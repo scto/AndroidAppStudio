@@ -11,7 +11,7 @@ on:
 
 jobs:
   buildArm:
-    name: Build Arm Debug APK
+    name: Build Arm Release APK
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
