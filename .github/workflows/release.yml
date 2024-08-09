@@ -1,4 +1,4 @@
-name: Release Build CI
+name: Android CI
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   buildArm:
-    name: Build Arm Release APK
+    name: Build Arm Debug APK
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -90,10 +90,10 @@ jobs:
       - name: Build release APK
         run: ./gradlew assembleAarch64Release
           
-      - name: Upload releaseAPK
+      - name: Upload release APK
         uses: actions/upload-artifact@v3
         with:
-          name: android-appstudio-armeabi-v8a
+          name: android-appstudio-arm64-v8a
           path: app/build/outputs/apk/aarch64/release/app-aarch64-release.apk
 
       - name: Upload output metadata APK
