@@ -29,62 +29,95 @@
  * Copyright © 2024 Dev Kumar
  */
 
-package com.icst.android.appstudio;
+package com.icst.android.appstudio.beans.block;
 
-import com.icst.android.appstudio.extensions.activityextension.ActivityExtension;
-import com.icst.android.appstudio.extensions.basicvariables.BasicVariablesExtensions;
-import com.icst.android.appstudio.extensions.commentextension.CommentExtension;
-import com.icst.android.appstudio.extensions.controlextension.ControlExtension;
-import com.icst.android.appstudio.extensions.controlextension.OperatorExtension;
-import java.util.ArrayList;
-import java.util.HashMap;
+/** Abstract class representing the base block supposed to be used within the LogicEditor. */
+public abstract class BlockBean {
 
-public class ExtensionsManager {
-  public static final String EXTENSION_FILE_NAME = "extensionFileName";
-  public static final String EXTENSION_BUNDLE = "extensionBundle";
+  // The color of the block
+  private String color;
 
-  public static ArrayList<HashMap<String, Object>> getExtensions() throws Exception {
-    /*
-     * MAKE YOUR EXTENSION LIST HERE
-     */
+  // Whether the block is currently inside the LogicEditorCanva
+  private boolean insideEditor;
 
-    ArrayList<HashMap<String, Object>> extensions = new ArrayList<HashMap<String, Object>>();
+  // Whether the block can be dragged
+  private boolean dragAllowed;
 
-    {
-      HashMap<String, Object> extension = new HashMap<String, Object>();
-      extension.put(EXTENSION_FILE_NAME, "ControlBlocks.extaas");
-      extension.put(EXTENSION_BUNDLE, ControlExtension.getExtensionBundle());
-      extensions.add(extension);
-    }
+  // Whether the value of the block is read-only
+  private boolean valueReadOnly;
 
-    {
-      HashMap<String, Object> extension = new HashMap<String, Object>();
-      extension.put(EXTENSION_FILE_NAME, "OperatorBlocks.extaas");
-      extension.put(EXTENSION_BUNDLE, OperatorExtension.getExtensionBundle());
-      extensions.add(extension);
-    }
+  /**
+   * Gets the color of the block.
+   *
+   * @return the color of the block as a String in hexadecimal format.
+   */
+  public String getColor() {
+    return color;
+  }
 
-    {
-      HashMap<String, Object> extension = new HashMap<String, Object>();
-      extension.put(EXTENSION_FILE_NAME, "ActivityEvents.extaas");
-      extension.put(EXTENSION_BUNDLE, ActivityExtension.getExtensionBundle());
-      extensions.add(extension);
-    }
+  /**
+   * Sets the color of the block.
+   *
+   * @param color the new color for the block.
+   */
+  public void setColor(String color) {
+    this.color = color;
+  }
 
-    {
-      HashMap<String, Object> extension = new HashMap<String, Object>();
-      extension.put(EXTENSION_FILE_NAME, "BasicVariable.extaas");
-      extension.put(EXTENSION_BUNDLE, BasicVariablesExtensions.getExtensionBundle());
-      extensions.add(extension);
-    }
+  /**
+   * Checks if the block is inside the LogicEditorCanva.
+   *
+   * @return true if the block is inside the editor, false otherwise.
+   */
+  public boolean isInsideEditor() {
+    return insideEditor;
+  }
 
-    {
-      HashMap<String, Object> extension = new HashMap<String, Object>();
-      extension.put(EXTENSION_FILE_NAME, "CommentExtension.extaas");
-      extension.put(EXTENSION_BUNDLE, CommentExtension.getExtensionBundle());
-      extensions.add(extension);
-    }
+  /**
+   * Sets the inside editor state of the block. Supposed to be used only by internal library not by
+   * library consumers.
+   *
+   * @param insideEditor true if the block is inside the LogicEditorCanva, false otherwise.
+   */
+  public void setInsideEditor(boolean insideEditor) {
+    this.insideEditor = insideEditor;
+  }
 
-    return extensions;
+  /**
+   * Checks if dragging the block is allowed.
+   *
+   * @return true if dragging is allowed, false otherwise.
+   */
+  public boolean isDragAllowed() {
+    return dragAllowed;
+  }
+
+  /**
+   * Sets whether dragging the block is allowed. Supposed to be used only by internal library and
+   * for purpose of pre-build EventBean. You must see its implementation somewhere in app, guess its
+   * usage because it is not designed mainly for consumers.
+   *
+   * @param dragAllowed true to allow dragging, false otherwise.
+   */
+  public void setDragAllowed(boolean dragAllowed) {
+    this.dragAllowed = dragAllowed;
+  }
+
+  /**
+   * Checks if the block's value is read-only.
+   *
+   * @return true if the value is read-only, false otherwise.
+   */
+  public boolean isValueReadOnly() {
+    return valueReadOnly;
+  }
+
+  /**
+   * Sets whether the block's value is read-only.
+   *
+   * @param valueReadOnly true to make the value read-only, false otherwise.
+   */
+  public void setValueReadOnly(boolean valueReadOnly) {
+    this.valueReadOnly = valueReadOnly;
   }
 }
