@@ -29,15 +29,59 @@
  * Copyright © 2024 Dev Kumar
  */
 
-plugins {
-  id("java-library")
-  id("org.jetbrains.dokka")
-}
+package com.icst.android.appstudio.beans;
 
-dokkaHtml {
-  dokkaSourceSets {
-    create("main") {
-      sourceRoots.from(file("src/main/java"))
+/**
+ * A class of Datatype, to compare that the two Datatypes are different or not by comparing class name and import.
+ * This Bean can also be used to store data.
+ */
+public class DatatypeBean {
+  private String className;
+  private String classImport;
+
+  /**
+   * <p>Compare two DatatypeBean by checking that its import and class name is same or not with other.</p>
+   * <p><b>Note</b>: Comparision is not done by memory pointer, it is checked whether the className and classImoort of datatype is equal or not.
+   *
+   * @param mDatatypeBean DatatypeBean to compare with.
+   * @return True if @mDatatypeBean is equal.
+   */
+  public boolean equals(DatatypeBean mDatatypeBean) {
+    if (mDatatypeBean == null) {
+      return false;
     }
+    boolean isClassNameEqual = false;
+    if (className == null) {
+      isClassNameEqual = mDatatypeBean.className == null ? true : false;
+    } else {
+      if (mDatatypeBean.className == null) return false;
+      isClassNameEqual = mDatatypeBean.className.equals(className);
+    }
+
+    boolean isClassImportEqual = false;
+    if (classImport == null) {
+      isClassImportEqual = mDatatypeBean.classImport == null ? true : false;
+    } else {
+      if (mDatatypeBean.className == null) return false;
+      isClassImportEqual = mDatatypeBean.classImport.equals(classImport);
+    }
+
+    return isClassNameEqual && isClassImportEqual;
+  }
+
+  public String getClassName() {
+    return this.className;
+  }
+
+  public void setClassName(String className) {
+    this.className = className;
+  }
+
+  public String getClassImport() {
+    return this.classImport;
+  }
+
+  public void setClassImport(String classImport) {
+    this.classImport = classImport;
   }
 }
