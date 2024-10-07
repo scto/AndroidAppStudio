@@ -31,16 +31,18 @@
 
 package com.icst.android.appstudio.beans;
 
+import com.icst.android.appstudio.beans.utils.BlockBeanUtils;
+
 /**
  * Abstract class representing the ExpressionBlockBean drop zone supposed to be used within the
  * LogicEditor.
  */
 public abstract class ExpressionBlockDropZone {
 
-  // Marks whether ExpressionBlockDropZone is empty or occupied by a ExpressionBlockBean.
+  /** Marks whether ExpressionBlockDropZone is empty or occupied by a ExpressionBlockBean. */
   private boolean isOccupied;
 
-  // ExpressionBlockBean that occupied this ExpressionBlockDropZone.
+  /** ExpressionBlockBean that occupied this ExpressionBlockDropZone. */
   private ExpressionBlockBean expressionBlockBean;
 
   private DatatypeBean datatypeBean;
@@ -73,15 +75,8 @@ public abstract class ExpressionBlockDropZone {
    *     not.
    */
   protected boolean canDropBlockBean(ExpressionBlockBean mExpressionBlockBean) {
-    boolean canDrop = false;
-    for (DatatypeBean datatypeBean : mExpressionBlockBean.getReturnDatatypes()) {
-      if (datatypeBean.equals(getDatatypeBean())) {
-        canDrop = true;
-        break;
-      }
-    }
-
-    return canDrop;
+    return BlockBeanUtils.arrayContainsDatatypeBeans(
+        mExpressionBlockBean.getReturnDatatypes(), datatypeBean);
   }
 
   /**
