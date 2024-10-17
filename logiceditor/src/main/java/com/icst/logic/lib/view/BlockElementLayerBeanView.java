@@ -29,43 +29,12 @@
  * Copyright © 2024 Dev Kumar
  */
 
-package com.icst.android.appstudio.test.logiceditor;
+package com.icst.logic.lib.view;
 
-import com.icst.android.appstudio.beans.BlockElementBean;
-import com.icst.android.appstudio.beans.BlockElementLayerBean;
-import com.icst.android.appstudio.beans.EventBean;
-import com.icst.android.appstudio.beans.EventBlockBean;
-import com.icst.android.appstudio.beans.LabelBlockElementBean;
-import java.util.ArrayList;
+import android.content.Context;
 
-public class DummyBeans {
-  public static EventBean getDummyEvent() {
-    EventBean event = new EventBean();
-
-    event.setEventDefinationBlockBean(getDummyEventDefBlockBean());
-
-    return event;
-  }
-
-  private static EventBlockBean getDummyEventDefBlockBean() {
-    EventBlockBean blockBean = new EventBlockBean();
-    blockBean.setColor("#998803");
-    blockBean.setDragAllowed(true);
-
-    ArrayList<BlockElementLayerBean> layers = new ArrayList<BlockElementLayerBean>();
-    BlockElementLayerBean layer1 = new BlockElementLayerBean();
-
-    ArrayList<BlockElementBean> layer1Elements = new ArrayList<BlockElementBean>();
-
-    LabelBlockElementBean onTestLabel = new LabelBlockElementBean();
-    onTestLabel.setLabel("onTestEvent");
-
-    layer1Elements.add(onTestLabel);
-    layer1.setBlockElementBeans(layer1Elements);
-
-    layers.add(layer1);
-    blockBean.setElementsLayers(layers);
-
-    return blockBean;
+public class BlockElementLayerBeanView extends LayerBeanView {
+  public BlockElementLayerBeanView(Context context) {
+    super(context);
   }
 }

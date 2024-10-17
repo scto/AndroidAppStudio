@@ -29,90 +29,73 @@
  * Copyright © 2024 Dev Kumar
  */
 
-package com.icst.logic.block.view;
+package com.icst.logic.lib.builder;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.icst.android.appstudio.beans.BlockElementLayerBean;
-import com.icst.android.appstudio.beans.EventBlockBean;
-import com.icst.logic.lib.builder.LayerBuilder;
+import com.icst.android.appstudio.beans.ExpressionBlockBean;
+import com.icst.android.appstudio.beans.LabelBlockElementBean;
+import com.icst.android.appstudio.beans.LayerBean;
 import com.icst.logic.lib.config.LogicEditorConfiguration;
 import com.icst.logic.lib.view.BlockElementLayerBeanView;
 import com.icst.logic.lib.view.LayerBeanView;
-import com.icst.logic.utils.BlockImageUtills;
-import com.icst.logic.utils.ImageViewUtils;
-import java.util.ArrayList;
 
-public class EventBlockBeanView extends LinearLayout {
-  private Context context;
-  private EventBlockBean eventBlockBean;
-  private LogicEditorConfiguration configuration = new LogicEditorConfiguration();
-  private ArrayList<LayerBeanView> layers;
+public final class LayerBuilder {
 
-  public EventBlockBeanView(Context context, EventBlockBean eventBlockBean) {
-    super(context);
-    this.context = context;
-    this.eventBlockBean = eventBlockBean;
-    layers = new ArrayList<LayerBeanView>();
-    init();
+  public static LayerBeanView buildBlockLayerView(
+      Context context, LayerBean layerBean, LogicEditorConfiguration configuration) {
+    if (layerBean instanceof BlockElementLayerBean mBlockElementLayerBean) {
+      return buildBlockElementLayerView(context, mBlockElementLayerBean, configuration);
+    } else return null;
   }
 
-  private void init() {
-    setOrientation(VERTICAL);
-    LinearLayout header = new LinearLayout(context);
-    LinearLayout.LayoutParams headerLayoutParams =
-        new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT, // Width
-            LinearLayout.LayoutParams.WRAP_CONTENT // Height
+  // Build the block element layer
+  private static LayerBeanView buildBlockElementLayerView(
+      Context context,
+      BlockElementLayerBean mBlockElementLayerBean,
+      LogicEditorConfiguration configuration) {
+
+    BlockElementLayerBeanView view = new BlockElementLayerBeanView(context);
+    view.setOrientation(BlockElementLayerBeanView.HORIZONTAL);
+
+    mBlockElementLayerBean
+        .getBlockElementBeans()
+        .forEach(
+            element -> {
+              if (element instanceof LabelBlockElementBean labelBean) {
+                view.addView(buildLabelView(labelBean, context, configuration));
+              } else if (element instanceof ExpressionBlockBean mExpressionBlockBean) {
+                view.addView(
+                    buildExpressionBlockBeanView(mExpressionBlockBean, context, configuration));
+              }
+            });
+
+    return view;
+  }
+
+  private static View buildLabelView(
+      LabelBlockElementBean labelBean, Context context, LogicEditorConfiguration configuration) {
+
+    TextView labelTextView = new TextView(context);
+    labelTextView.setText(labelBean.getLabel());
+    labelTextView.setTextSize(configuration.getTextSize().getTextSize());
+    LayerBeanView.LayoutParams layerLayoutParams =
+        new LayerBeanView.LayoutParams(
+            LayerBeanView.LayoutParams.WRAP_CONTENT, // Width
+            LayerBeanView.LayoutParams.WRAP_CONTENT // Height
             );
-    header.setBackgroundDrawable(
-        ImageViewUtils.getImageView(
-            context,
-            eventBlockBean.getColor(),
-            BlockImageUtills.getImage(BlockImageUtills.Image.EVENT_BLOCK_ROUND_EDGE_TOP)));
-    header.setLayoutParams(headerLayoutParams);
-    addView(header);
-
-    ArrayList<BlockElementLayerBean> layers = eventBlockBean.getElementsLayers();
-
-    for (int i = 0; i < layers.size(); ++i) {
-      BlockElementLayerBean elementLayer = layers.get(i);
-      LayerBeanView layerView =
-          LayerBuilder.buildBlockLayerView(context, elementLayer, configuration);
-      layerView.setLayerPosition(i);
-      layerView.setFirstLayer(i == 0);
-      layerView.setLastLayer(i == (layers.size() - 1));
-      LinearLayout.LayoutParams layerLayoutParams =
-          new LinearLayout.LayoutParams(
-              LinearLayout.LayoutParams.WRAP_CONTENT, // Width
-              LinearLayout.LayoutParams.WRAP_CONTENT // Height
-              );
-      addView(layerView);
-	  layerView.setLayoutParams(layerLayoutParams);
-      this.layers.add(layerView);
-    }
-	applyBackDropToLayers();
+    labelTextView.setLayoutParams(layerLayoutParams);
+    labelTextView.setPadding(8, 8, 8, 8);
+    return labelTextView;
   }
 
-  private void applyBackDropToLayers() {
-    layers.forEach(
-        layerBeanView -> {
-          if (layerBeanView instanceof BlockElementLayerBeanView mBlockElementLayerBeanView) {
-            mBlockElementLayerBeanView.setBackgroundDrawable(
-                ImageViewUtils.getImageView(
-                    context,
-                    eventBlockBean.getColor(),
-                    BlockImageUtills.getImage(
-                        BlockImageUtills.Image.BLOCK_ELEMENT_LAYER_BACKDROP)));
-          }
-        });
-  }
-
-  private void setEventBlockBean(EventBlockBean eventBlockBean) {
-    this.eventBlockBean = eventBlockBean;
-    layers = new ArrayList<LayerBeanView>();
-    removeAllViews();
-    init();
+  private static View buildExpressionBlockBeanView(
+      ExpressionBlockBean mExpressionBlockBean,
+      Context context,
+      LogicEditorConfiguration configuration) {
+    // TODO: Need to write this method....
+    return null;
   }
 }

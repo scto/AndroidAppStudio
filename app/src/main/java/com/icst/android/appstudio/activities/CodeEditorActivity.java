@@ -31,6 +31,8 @@
 
 package com.icst.android.appstudio.activities;
 
+import android.code.editor.common.utils.ColorUtils;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +40,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.icst.android.appstudio.R;
 import com.icst.android.appstudio.adapters.PaneAdapter;
@@ -73,13 +76,25 @@ public class CodeEditorActivity extends BaseActivity {
     setContentView(binding.getRoot());
 
     ImageView shellIcon = new ImageView(this);
-    shellIcon.setImageResource(R.drawable.language_shell);
+    Drawable shellIconDrawable = ContextCompat.getDrawable(this, R.drawable.language_shell);
+    shellIconDrawable.setTint(
+        ColorUtils.getColor(this, com.google.android.material.R.attr.colorOnSurface));
+    shellIcon.setImageDrawable(shellIconDrawable);
+    shellIcon.setBackgroundDrawable(
+        ContextCompat.getDrawable(this, R.drawable.ripple_on_color_surface));
     shellIcon.setOnClickListener(
         v -> {
           switchSection(WORKSPACE);
           TerminalPaneView terminalPane =
               new TerminalPaneView(
-                  CodeEditorActivity.this, directory, EnvironmentUtils.LOGIN_SHELL);
+                  CodeEditorActivity.this, directory, EnvironmentUtils.LOGIN_SHELL) {
+                @Override
+                public void onRelease() {
+                  panes.remove(this);
+                  paneAdapter.notifyDataSetChanged();
+                  switchSection(NO_WORKSPACE);
+                }
+              };
           LinearLayout.LayoutParams layoutParam =
               new LinearLayout.LayoutParams(
                   LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -132,7 +147,7 @@ public class CodeEditorActivity extends BaseActivity {
      * 1. File Tree
      * Displays the file tree of directory opened in editor.
      *
-     * 2. Curretly opened panes: TODO
+     * 2. Curretly opened panes
      * Displays the unfinished editor pane or terminal pane.
      */
     Menu menu = binding.navigationRail.getMenu();
@@ -205,7 +220,16 @@ public class CodeEditorActivity extends BaseActivity {
     }
 
     if (pane == null) {
-      pane = new CodeEditorPaneView(this, file);
+      pane =
+          new CodeEditorPaneView(this, file) {
+
+            @Override
+            public void onRelease() {
+              panes.remove(this);
+              paneAdapter.notifyDataSetChanged();
+              switchSection(NO_WORKSPACE);
+            }
+          };
       LinearLayout.LayoutParams layoutParam =
           new LinearLayout.LayoutParams(
               LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);

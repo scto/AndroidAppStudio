@@ -29,43 +29,41 @@
  * Copyright © 2024 Dev Kumar
  */
 
-package com.icst.android.appstudio.test.logiceditor;
+package com.icst.logic.lib.view;
 
-import com.icst.android.appstudio.beans.BlockElementBean;
-import com.icst.android.appstudio.beans.BlockElementLayerBean;
-import com.icst.android.appstudio.beans.EventBean;
-import com.icst.android.appstudio.beans.EventBlockBean;
-import com.icst.android.appstudio.beans.LabelBlockElementBean;
-import java.util.ArrayList;
+import android.content.Context;
+import android.widget.LinearLayout;
 
-public class DummyBeans {
-  public static EventBean getDummyEvent() {
-    EventBean event = new EventBean();
+public abstract class LayerBeanView extends LinearLayout {
+  private int layerPosition;
+  private boolean isFirstLayer;
+  private boolean isLastLayer;
 
-    event.setEventDefinationBlockBean(getDummyEventDefBlockBean());
-
-    return event;
+  public LayerBeanView(Context context) {
+    super(context);
   }
 
-  private static EventBlockBean getDummyEventDefBlockBean() {
-    EventBlockBean blockBean = new EventBlockBean();
-    blockBean.setColor("#998803");
-    blockBean.setDragAllowed(true);
+  public int getLayerPosition() {
+    return this.layerPosition;
+  }
 
-    ArrayList<BlockElementLayerBean> layers = new ArrayList<BlockElementLayerBean>();
-    BlockElementLayerBean layer1 = new BlockElementLayerBean();
+  public void setLayerPosition(int layerPosition) {
+    this.layerPosition = layerPosition;
+  }
 
-    ArrayList<BlockElementBean> layer1Elements = new ArrayList<BlockElementBean>();
+  public boolean isFirstLayer() {
+    return this.isFirstLayer;
+  }
 
-    LabelBlockElementBean onTestLabel = new LabelBlockElementBean();
-    onTestLabel.setLabel("onTestEvent");
+  public void setFirstLayer(boolean isFirstLayer) {
+    this.isFirstLayer = isFirstLayer;
+  }
 
-    layer1Elements.add(onTestLabel);
-    layer1.setBlockElementBeans(layer1Elements);
+  public boolean isLastLayer() {
+    return this.isLastLayer;
+  }
 
-    layers.add(layer1);
-    blockBean.setElementsLayers(layers);
-
-    return blockBean;
+  public void setLastLayer(boolean isLastLayer) {
+    this.isLastLayer = isLastLayer;
   }
 }

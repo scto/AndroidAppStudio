@@ -29,43 +29,27 @@
  * Copyright © 2024 Dev Kumar
  */
 
-package com.icst.android.appstudio.test.logiceditor;
+package com.icst.android.appstudio.viewmodel;
 
-import com.icst.android.appstudio.beans.BlockElementBean;
-import com.icst.android.appstudio.beans.BlockElementLayerBean;
-import com.icst.android.appstudio.beans.EventBean;
-import com.icst.android.appstudio.beans.EventBlockBean;
-import com.icst.android.appstudio.beans.LabelBlockElementBean;
-import java.util.ArrayList;
+public abstract class ActionButton {
+  private int icon;
+  private String text;
 
-public class DummyBeans {
-  public static EventBean getDummyEvent() {
-    EventBean event = new EventBean();
-
-    event.setEventDefinationBlockBean(getDummyEventDefBlockBean());
-
-    return event;
+  public int getIcon() {
+    return this.icon;
   }
 
-  private static EventBlockBean getDummyEventDefBlockBean() {
-    EventBlockBean blockBean = new EventBlockBean();
-    blockBean.setColor("#998803");
-    blockBean.setDragAllowed(true);
-
-    ArrayList<BlockElementLayerBean> layers = new ArrayList<BlockElementLayerBean>();
-    BlockElementLayerBean layer1 = new BlockElementLayerBean();
-
-    ArrayList<BlockElementBean> layer1Elements = new ArrayList<BlockElementBean>();
-
-    LabelBlockElementBean onTestLabel = new LabelBlockElementBean();
-    onTestLabel.setLabel("onTestEvent");
-
-    layer1Elements.add(onTestLabel);
-    layer1.setBlockElementBeans(layer1Elements);
-
-    layers.add(layer1);
-    blockBean.setElementsLayers(layers);
-
-    return blockBean;
+  public void setIcon(int icon) {
+    this.icon = icon;
   }
+
+  public String getText() {
+    return this.text;
+  }
+
+  public void setText(String text) {
+    this.text = text;
+  }
+
+  public abstract void onClick();
 }
