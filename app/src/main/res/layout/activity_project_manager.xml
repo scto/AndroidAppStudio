@@ -1,67 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical">
+    android:layout_width="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="0dp"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@color/color_primary"
-        android:elevation="8dp"
-        android:padding="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/createProject"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_semibold"
-            android:text="@string/app_name"
-            android:textColor="@color/design_default_color_on_primary"
-            android:textSize="24sp" />
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
+            android:layout_width="match_parent"
+            style="?attr/collapsingToolbarLayoutMediumStyle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:tint="@color/design_default_color_on_primary"
-            app:srcCompat="@drawable/menu" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent"
+				android:id="@+id/toolbar"
+                android:elevation="0dp"
+                app:layout_collapseMode="pin" />
 
-    </RelativeLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/createProject"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:backgroundTint="@color/color_primary"
-        android:fontFamily="@font/noto_sans_semibold"
-        android:text="@string/create_a_new_project"
-        android:textSize="19sp"
-        app:cornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
-
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/projectList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingTop="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createProject" />
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+		android:id="@+id/projectList"
+		android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+		android:id="@+id/fab"
+        android:layout_margin="16dp"
+        android:text="@string/create_a_new_project"
+        android:layout_gravity="end|bottom"
+        app:icon="@drawable/ic_add" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

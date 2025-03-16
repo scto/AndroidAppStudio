@@ -38,11 +38,17 @@ public class ProjectManagerActivity extends AppCompatActivity {
 
     private void UI() {
         //System Padding
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+		
+		// Toolbar
+		setSupportActionBar(binding.toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setHomeButtonEnabled(true);
+		binding.toolbar.setTitle(R.string.app_name);
 
         ArrayList<String> data = new ArrayList<>();
 

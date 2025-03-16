@@ -61,6 +61,7 @@
             android:layout_height="24dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+			android:tint="?attr/colorOnSurface"
             android:src="@drawable/more" />
 
     </RelativeLayout>
