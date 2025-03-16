@@ -52,6 +52,7 @@ dependencies {
     implementation project(":beans:blockbeans")
     implementation project(":beans:layoutbeans")
     implementation project(":beans:javabeans")
+	implementation project(":beans:projectbeans")
     implementation project(":beans:xmlbeans")
 
     // Logic Editor
