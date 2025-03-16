@@ -1,37 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+        android:layout_marginBottom="8dp"
+        android:background="@color/color_primary"
+        android:elevation="8dp"
+        android:padding="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/createProject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            style="?attr/collapsingToolbarLayoutMediumStyle"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/collapsingToolbarLayoutMediumSize">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_semibold"
+            android:text="@string/app_name"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="24sp" />
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:elevation="0dp"
-                app:layout_collapseMode="pin" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:tint="@color/design_default_color_on_primary"
+            app:srcCompat="@drawable/menu" />
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </RelativeLayout>
 
-    </com.google.android.material.appbar.AppBarLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/createProject"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:backgroundTint="@color/color_primary"
+        android:fontFamily="@font/noto_sans_semibold"
+        android:text="@string/create_a_new_project"
+        android:textSize="19sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-		android:id="@+id/projectRecyclerView"
-		app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:id="@+id/projectList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createProject" />
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
