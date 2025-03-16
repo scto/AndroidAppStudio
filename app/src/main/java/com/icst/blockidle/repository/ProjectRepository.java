@@ -15,16 +15,36 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.manager;
+package com.icst.blockidle.repository;
 
 import java.util.ArrayList;
 
 import com.icst.blockidle.bean.ProjectBean;
 
-public final class ProjectManager {
+import androidx.lifecycle.MutableLiveData;
+
+public class ProjectRepository {
+
+	private ArrayList<ProjectBean> mProjects;
+	private static ProjectRepository projectRepository;
+
+	public static final ProjectRepository getInstance() {
+		if (projectRepository == null) {
+			projectRepository = new ProjectRepository();
+			projectRepository.mProjects = getDummyProjects();
+		}
+		return projectRepository;
+	}
+
+	public MutableLiveData<ArrayList<ProjectBean>> getMutableLiveProjects() {
+		// TODO: Fetch the fresh project list but curently return as it is.
+		MutableLiveData<ArrayList<ProjectBean>> data = new MutableLiveData<ArrayList<ProjectBean>>();
+		data.setValue(mProjects);
+		return data;
+	}
 
 	// Currently Dummy Projects
-	public static ArrayList<ProjectBean> getProjects() {
+	private static ArrayList<ProjectBean> getDummyProjects() {
 		ArrayList<ProjectBean> projects = new ArrayList<>();
 
 		ProjectBean project1 = new ProjectBean();
