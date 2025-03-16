@@ -24,6 +24,7 @@ include(":beans:basebeans")
 include(":beans:blockbeans")
 include(":beans:layoutbeans")
 include(":beans:javabeans")
+include(":beans:projectbeans")
 include(":beans:xmlbeans")
 
 // Logic Editor
