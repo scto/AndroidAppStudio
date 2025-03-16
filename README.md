@@ -16,5 +16,7 @@ To contribute to Android App Studio, follow these steps:
 4. Push your changes to your fork: `git push origin feature-name`.
 5. Open a pull request to the `main` branch.
 
+Please make sure to run `spotlessApply` to format the entire project.
+
 # Special Thanks to
 [rooki_eplay](https://www.instagram.com/rooki_eplay) for UI designing on entire project.

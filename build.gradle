@@ -1,14 +1,14 @@
 plugins {
-    id "com.android.application" version "8.9.0" apply false
-    id "com.android.library" version "8.9.0" apply false
-    id "org.jetbrains.kotlin.android" version "2.1.10" apply false
-    id "com.diffplug.spotless" version "7.0.0.BETA3" apply true
+	id "com.android.application" version "8.9.0" apply false
+	id "com.android.library" version "8.9.0" apply false
+	id "org.jetbrains.kotlin.android" version "2.1.10" apply false
+	id "com.diffplug.spotless" version "7.0.0.BETA3" apply true
 	id "org.jetbrains.dokka" version "1.9.20" apply false
 }
 
 ext {
-    appcompat_version = "1.7.0"
-    material_design_version = "1.12.0"
+	appcompat_version = "1.7.0"
+	material_design_version = "1.12.0"
 	core_splashscreen = "1.0.1"
 	blankj_utilcodex_version = "1.31.1"
 	sora_editor_version = "0.22.0"

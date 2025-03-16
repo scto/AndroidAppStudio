@@ -19,35 +19,91 @@ package com.icst.blockidle.bean;
 
 import java.io.Serializable;
 
+/**
+ * Represents a project with a name, version name, and version number.
+ * This class implements {@link Serializable} to allow object serialization.
+ * <p>
+ * It is used to store and retrieve project details in the application.
+ * </p>
+ *
+ * @version 1.0
+ */
 public class ProjectBean implements Serializable {
 
+	/**
+	 * Serial version UID for ensuring compatibility during serialization.
+	 */
 	public static final long serialVersionUID = 1L;
 
-    private String projectName;
-    private String projectVersionName;
-    private String projectVersion;
+	private String projectName;
+	private String projectVersionName;
+	private String projectVersion;
 
-    public String getProjectName() {
-        return this.projectName;
-    }
+	/**
+	 * Gets the project name.
+	 *
+	 * @return the name of the project.
+	 */
+	public String getProjectName() {
+		return this.projectName;
+	}
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
+	/**
+	 * Sets the project name.
+	 *
+	 * @param projectName the name of the project to set.
+	 */
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
 
-    public String getProjectVersionName() {
-        return this.projectVersionName;
-    }
+	/**
+	 * Gets the project version name.
+	 *
+	 * @return the version name of the project.
+	 */
+	public String getProjectVersionName() {
+		return this.projectVersionName;
+	}
 
-    public void setProjectVersionName(String projectVersionName) {
-        this.projectVersionName = projectVersionName;
-    }
+	/**
+	 * Sets the project version name.
+	 *
+	 * @param projectVersionName the version name of the project to set.
+	 */
+	public void setProjectVersionName(String projectVersionName) {
+		this.projectVersionName = projectVersionName;
+	}
 
-    public String getProjectVersion() {
-        return this.projectVersion;
-    }
+	/**
+	 * Gets the project version number.
+	 *
+	 * @return the version number of the project.
+	 */
+	public String getProjectVersion() {
+		return this.projectVersion;
+	}
 
-    public void setProjectVersion(String projectVersion) {
-        this.projectVersion = projectVersion;
-    }
+	/**
+	 * Sets the project version number.
+	 *
+	 * @param projectVersion the version number of the project to set.
+	 */
+	public void setProjectVersion(String projectVersion) {
+		this.projectVersion = projectVersion;
+	}
+
+	/**
+	 * Returns a string representation of the project.
+	 *
+	 * @return a formatted string containing project details.
+	 */
+	@Override
+	public String toString() {
+		return "ProjectBean{" +
+				"projectName='" + projectName + '\'' +
+				", projectVersionName='" + projectVersionName + '\'' +
+				", projectVersion='" + projectVersion + '\'' +
+				'}';
+	}
 }

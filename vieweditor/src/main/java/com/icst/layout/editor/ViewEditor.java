@@ -17,9 +17,6 @@
 
 package com.icst.layout.editor;
 
-import com.icst.blockidle.beans.LayoutBean;
-import com.icst.blockidle.beans.ViewAttributeBean;
-import com.icst.blockidle.beans.ViewBean;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +26,9 @@ import com.elfilibustero.uidesigner.lib.handler.AttributeSetHandler;
 import com.elfilibustero.uidesigner.lib.utils.Constants;
 import com.elfilibustero.uidesigner.lib.view.ShadowView;
 import com.elfilibustero.uidesigner.ui.designer.LayoutDesigner;
+import com.icst.blockidle.beans.LayoutBean;
+import com.icst.blockidle.beans.ViewAttributeBean;
+import com.icst.blockidle.beans.ViewBean;
 
 import android.content.Context;
 import android.util.AttributeSet;
