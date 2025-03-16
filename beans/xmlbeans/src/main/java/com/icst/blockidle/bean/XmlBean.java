@@ -31,7 +31,7 @@ public class XmlBean implements Serializable {
 	private ArrayList<XmlBean> children;
 	private String name;
 	private String id;
-	
+
 	private String getCode() {
 		return getCode("");
 	}
