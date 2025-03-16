@@ -62,19 +62,3 @@ dependencies {
 	// View Editor
 	implementation project(":vieweditor")
 }
-
-project.afterEvaluate {
-    tasks.named("assembleDebug").configure {
-        rootProject.tasks.named("spotlessApply").configure {
-            mustRunAfter(tasks.named("assembleDebug"))
-            finalizedBy(rootProject.tasks.named("spotlessApply"))
-        }
-    }
-	
-	tasks.named("assembleRelease").configure {
-        rootProject.tasks.named("spotlessApply").configure {
-            mustRunAfter(tasks.named("assembleRelease"))
-            finalizedBy(rootProject.tasks.named("spotlessApply"))
-        }
-    }
-}
