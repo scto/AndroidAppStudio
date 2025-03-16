@@ -1,5 +1,6 @@
 package com.icst.blockidle.activities.project_manager;
 
+import com.icst.blockidle.util.EnvironmentUtils;
 import java.util.ArrayList;
 
 import com.icst.blockidle.R;
@@ -25,6 +26,7 @@ public class ProjectManagerActivity extends AppCompatActivity {
 		SplashScreen.installSplashScreen(this);
 		super.onCreate(savedInstanceState);
 		EdgeToEdge.enable(this);
+		EnvironmentUtils.init(this);
 
 		// Inflate and get instance of binding
 		binding = ActivityProjectManagerBinding.inflate(getLayoutInflater());
