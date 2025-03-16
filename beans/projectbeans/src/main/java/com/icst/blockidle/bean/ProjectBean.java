@@ -92,4 +92,18 @@ public class ProjectBean implements Serializable {
     public void setProjectVersion(String projectVersion) {
         this.projectVersion = projectVersion;
     }
+
+    /**
+     * Returns a string representation of the project.
+     *
+     * @return a formatted string containing project details.
+     */
+    @Override
+    public String toString() {
+        return "ProjectBean{" +
+               "projectName='" + projectName + '\'' +
+               ", projectVersionName='" + projectVersionName + '\'' +
+               ", projectVersion='" + projectVersion + '\'' +
+               '}';
+    }
 }
