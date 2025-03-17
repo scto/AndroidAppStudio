@@ -17,8 +17,8 @@
 
 package com.icst.logic.utils;
 
-import com.icst.blockidle.bean.RegularBlockBean;
 import com.icst.blockidle.bean.ActionBlockBean;
+import com.icst.blockidle.bean.RegularBlockBean;
 import com.icst.blockidle.bean.TerminatorBlockBean;
 import com.icst.logic.block.view.ActionBlockBeanView;
 import com.icst.logic.block.view.RegularBlockBeanView;

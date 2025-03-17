@@ -19,9 +19,9 @@ package com.icst.logic.adapter;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.bean.RegularBlockBean;
 import com.icst.blockidle.bean.BlockBean;
 import com.icst.blockidle.bean.ExpressionBlockBean;
+import com.icst.blockidle.bean.RegularBlockBean;
 import com.icst.blockidle.bean.TerminatorBlockBean;
 import com.icst.logic.block.view.BlockBeanView;
 import com.icst.logic.block.view.RegularBlockBeanView;

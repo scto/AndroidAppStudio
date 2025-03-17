@@ -23,7 +23,7 @@ import com.icst.blockidle.bean.utils.BeanArrayCloneUtils;
 import com.icst.blockidle.bean.utils.BlockBeansUIDConstants;
 
 /** RegularBlockBean: Can hold RegularBlockBean (nested blocks), BlockElementBean */
-public class RegularBlockBean extends com.icst.blockidle.bean.ActionBlockBean<RegularBlockBean>
+public class RegularBlockBean extends ActionBlockBean<RegularBlockBean>
 		implements Serializable {
 
 	public static final long serialVersionUID = BlockBeansUIDConstants.BLOCK_BEAN;

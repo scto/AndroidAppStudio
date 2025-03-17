@@ -19,7 +19,6 @@ package com.icst.blockidle.javablocks;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.bean.RegularBlockBean;
 import com.icst.blockidle.bean.ActionBlockLayerBean;
 import com.icst.blockidle.bean.BlockBean;
 import com.icst.blockidle.bean.BlockElementBean;
@@ -28,6 +27,7 @@ import com.icst.blockidle.bean.BlockPaletteBean;
 import com.icst.blockidle.bean.BooleanBlockElementBean;
 import com.icst.blockidle.bean.LabelBlockElementBean;
 import com.icst.blockidle.bean.LayerBean;
+import com.icst.blockidle.bean.RegularBlockBean;
 import com.icst.blockidle.bean.utils.BuiltInDatatypes;
 import com.icst.blockidle.bean.utils.CodeFormatterUtils;
 
