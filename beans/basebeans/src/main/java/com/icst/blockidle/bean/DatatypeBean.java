@@ -15,7 +15,7 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.beans;
+package com.icst.blockidle.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,8 +23,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import com.icst.blockidle.beans.utils.BeanArrayCloneUtils;
-import com.icst.blockidle.beans.utils.BeansUIDConstants;
+import com.icst.blockidle.bean.utils.BeanArrayCloneUtils;
+import com.icst.blockidle.bean.utils.BeansUIDConstants;
 
 public class DatatypeBean implements CloneableBean<DatatypeBean>, Serializable {
 

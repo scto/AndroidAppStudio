@@ -19,10 +19,10 @@ package com.icst.logic.view;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.BlockBean;
-import com.icst.blockidle.beans.BlockElementLayerBean;
-import com.icst.blockidle.beans.ExpressionBlockBean;
-import com.icst.blockidle.beans.StringBlockBean;
+import com.icst.blockidle.bean.BlockBean;
+import com.icst.blockidle.bean.BlockElementLayerBean;
+import com.icst.blockidle.bean.ExpressionBlockBean;
+import com.icst.blockidle.bean.StringBlockBean;
 import com.icst.logic.block.view.ExpressionBlockBeanView;
 import com.icst.logic.builder.LayerViewFactory;
 import com.icst.logic.config.LogicEditorConfiguration;

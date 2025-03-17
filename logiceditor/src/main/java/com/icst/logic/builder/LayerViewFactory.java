@@ -17,16 +17,16 @@
 
 package com.icst.logic.builder;
 
-import com.icst.blockidle.beans.ActionBlockLayerBean;
-import com.icst.blockidle.beans.BlockBean;
-import com.icst.blockidle.beans.BlockElementLayerBean;
-import com.icst.blockidle.beans.BooleanBlockElementBean;
-import com.icst.blockidle.beans.ExpressionBlockBean;
-import com.icst.blockidle.beans.GeneralExpressionBlockElementBean;
-import com.icst.blockidle.beans.LabelBlockElementBean;
-import com.icst.blockidle.beans.LayerBean;
-import com.icst.blockidle.beans.NumericBlockElementBean;
-import com.icst.blockidle.beans.StringBlockElementBean;
+import com.icst.blockidle.bean.ActionBlockLayerBean;
+import com.icst.blockidle.bean.BlockBean;
+import com.icst.blockidle.bean.BlockElementLayerBean;
+import com.icst.blockidle.bean.BooleanBlockElementBean;
+import com.icst.blockidle.bean.ExpressionBlockBean;
+import com.icst.blockidle.bean.GeneralExpressionBlockElementBean;
+import com.icst.blockidle.bean.LabelBlockElementBean;
+import com.icst.blockidle.bean.LayerBean;
+import com.icst.blockidle.bean.NumericBlockElementBean;
+import com.icst.blockidle.bean.StringBlockElementBean;
 import com.icst.logic.block.view.BlockBeanView;
 import com.icst.logic.config.LogicEditorConfiguration;
 import com.icst.logic.editor.view.LogicEditorView;

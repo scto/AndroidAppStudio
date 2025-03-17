@@ -15,11 +15,11 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.beans;
+package com.icst.blockidle.bean;
 
 import java.io.Serializable;
 
-import com.icst.blockidle.beans.utils.BeansUIDConstants;
+import com.icst.blockidle.bean.utils.BeansUIDConstants;
 
 /** Represents an artifact in a repository. */
 public class ArtifactBean implements Serializable {

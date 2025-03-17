@@ -15,7 +15,7 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.beans.utils;
+package com.icst.blockidle.bean.utils;
 
 public class BlockBeansUIDConstants {
 	public static final long BLOCK_BEAN = 1L;

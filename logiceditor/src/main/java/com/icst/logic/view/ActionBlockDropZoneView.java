@@ -20,9 +20,9 @@ package com.icst.logic.view;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.icst.blockidle.beans.ActionBlockBean;
-import com.icst.blockidle.beans.BlockBean;
-import com.icst.blockidle.beans.TerminatorBlockBean;
+import com.icst.blockidle.bean.ActionBlockBean;
+import com.icst.blockidle.bean.BlockBean;
+import com.icst.blockidle.bean.TerminatorBlockBean;
 import com.icst.logic.bean.ActionBlockDropZone;
 import com.icst.logic.block.view.ActionBlockBeanView;
 import com.icst.logic.config.BlockMarginConstants;

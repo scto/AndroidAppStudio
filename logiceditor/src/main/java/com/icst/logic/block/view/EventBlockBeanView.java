@@ -19,9 +19,9 @@ package com.icst.logic.block.view;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.BlockBean;
-import com.icst.blockidle.beans.BlockElementLayerBean;
-import com.icst.blockidle.beans.EventBlockBean;
+import com.icst.blockidle.bean.BlockBean;
+import com.icst.blockidle.bean.BlockElementLayerBean;
+import com.icst.blockidle.bean.EventBlockBean;
 import com.icst.logic.builder.LayerViewFactory;
 import com.icst.logic.config.LogicEditorConfiguration;
 import com.icst.logic.editor.view.LogicEditorView;

@@ -20,16 +20,16 @@ package com.icst.blockidle.javablocks;
 import java.util.ArrayList;
 
 import com.icst.blockidle.bean.RegularBlockBean;
-import com.icst.blockidle.beans.BlockBean;
-import com.icst.blockidle.beans.BlockElementBean;
-import com.icst.blockidle.beans.BlockElementLayerBean;
-import com.icst.blockidle.beans.BlockPaletteBean;
-import com.icst.blockidle.beans.BooleanBlockElementBean;
-import com.icst.blockidle.beans.LabelBlockElementBean;
-import com.icst.blockidle.beans.LayerBean;
-import com.icst.blockidle.beans.StringBlockElementBean;
-import com.icst.blockidle.beans.utils.BuiltInDatatypes;
-import com.icst.blockidle.beans.utils.CodeFormatterUtils;
+import com.icst.blockidle.bean.BlockBean;
+import com.icst.blockidle.bean.BlockElementBean;
+import com.icst.blockidle.bean.BlockElementLayerBean;
+import com.icst.blockidle.bean.BlockPaletteBean;
+import com.icst.blockidle.bean.BooleanBlockElementBean;
+import com.icst.blockidle.bean.LabelBlockElementBean;
+import com.icst.blockidle.bean.LayerBean;
+import com.icst.blockidle.bean.StringBlockElementBean;
+import com.icst.blockidle.bean.utils.BuiltInDatatypes;
+import com.icst.blockidle.bean.utils.CodeFormatterUtils;
 
 public final class IOBlockBeans {
 	public static BlockPaletteBean getIOBlockPalette() {

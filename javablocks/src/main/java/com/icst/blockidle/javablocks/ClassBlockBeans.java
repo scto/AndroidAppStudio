@@ -19,16 +19,16 @@ package com.icst.blockidle.javablocks;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.BlockBean;
-import com.icst.blockidle.beans.BlockElementBean;
-import com.icst.blockidle.beans.BlockElementLayerBean;
-import com.icst.blockidle.beans.BlockPaletteBean;
-import com.icst.blockidle.beans.DatatypeBean;
-import com.icst.blockidle.beans.GeneralExpressionBlockBean;
-import com.icst.blockidle.beans.GeneralExpressionBlockElementBean;
-import com.icst.blockidle.beans.LabelBlockElementBean;
-import com.icst.blockidle.beans.utils.BuiltInDatatypes;
-import com.icst.blockidle.beans.utils.CodeFormatterUtils;
+import com.icst.blockidle.bean.BlockBean;
+import com.icst.blockidle.bean.BlockElementBean;
+import com.icst.blockidle.bean.BlockElementLayerBean;
+import com.icst.blockidle.bean.BlockPaletteBean;
+import com.icst.blockidle.bean.DatatypeBean;
+import com.icst.blockidle.bean.GeneralExpressionBlockBean;
+import com.icst.blockidle.bean.GeneralExpressionBlockElementBean;
+import com.icst.blockidle.bean.LabelBlockElementBean;
+import com.icst.blockidle.bean.utils.BuiltInDatatypes;
+import com.icst.blockidle.bean.utils.CodeFormatterUtils;
 
 public class ClassBlockBeans {
 

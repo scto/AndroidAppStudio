@@ -18,11 +18,11 @@
 package com.icst.logic.sheet;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.icst.blockidle.beans.DatatypeBean;
-import com.icst.blockidle.beans.NumericBlockElementBean;
-import com.icst.blockidle.beans.StringBlockElementBean;
-import com.icst.blockidle.beans.ValueInputBlockElementBean;
-import com.icst.blockidle.beans.utils.BuiltInDatatypes;
+import com.icst.blockidle.bean.DatatypeBean;
+import com.icst.blockidle.bean.NumericBlockElementBean;
+import com.icst.blockidle.bean.StringBlockElementBean;
+import com.icst.blockidle.bean.ValueInputBlockElementBean;
+import com.icst.blockidle.bean.utils.BuiltInDatatypes;
 import com.icst.logic.editor.databinding.BottomsheetInputFieldBinding;
 import com.icst.logic.view.BlockElementInputEditText;
 

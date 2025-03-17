@@ -15,13 +15,13 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.beans;
+package com.icst.blockidle.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.utils.BeanArrayCloneUtils;
-import com.icst.blockidle.beans.utils.BlockBeansUIDConstants;
+import com.icst.blockidle.bean.utils.BeanArrayCloneUtils;
+import com.icst.blockidle.bean.utils.BlockBeansUIDConstants;
 
 /** A Bean that holds a group of Block elements. Used to store the Block items,
  * block elements but

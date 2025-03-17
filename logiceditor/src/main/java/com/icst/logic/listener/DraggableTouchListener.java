@@ -19,8 +19,8 @@ package com.icst.logic.listener;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.ActionBlockBean;
-import com.icst.blockidle.beans.BlockBean;
+import com.icst.blockidle.bean.ActionBlockBean;
+import com.icst.blockidle.bean.BlockBean;
 import com.icst.logic.block.view.ActionBlockBeanView;
 import com.icst.logic.block.view.ExpressionBlockBeanView;
 import com.icst.logic.block.view.RegularBlockBeanView;

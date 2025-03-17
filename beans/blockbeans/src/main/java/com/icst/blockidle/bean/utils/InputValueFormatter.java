@@ -15,9 +15,9 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.beans.utils;
+package com.icst.blockidle.bean.utils;
 
-import com.icst.blockidle.beans.ValueInputBlockElementBean;
+import com.icst.blockidle.bean.ValueInputBlockElementBean;
 
 public class InputValueFormatter {
 

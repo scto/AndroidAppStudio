@@ -1,6 +1,6 @@
-package com.icst.blockidle.beans.utils;
+package com.icst.blockidle.bean.utils;
 
-import com.icst.blockidle.beans.DatatypeBean;
+import com.icst.blockidle.bean.DatatypeBean;
 
 public final class BuiltInDatatypes {
 

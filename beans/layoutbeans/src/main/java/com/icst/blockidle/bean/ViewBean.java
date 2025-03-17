@@ -15,12 +15,12 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.beans;
+package com.icst.blockidle.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.utils.BeanArrayCloneUtils;
+import com.icst.blockidle.bean.utils.BeanArrayCloneUtils;
 
 public class ViewBean implements Serializable, CloneableBean<ViewBean> {
 	public static final long serialVersionUID = 1L;

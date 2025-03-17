@@ -17,7 +17,7 @@
 
 package com.icst.logic.view;
 
-import com.icst.blockidle.beans.BlockBean;
+import com.icst.blockidle.bean.BlockBean;
 
 import android.view.ViewGroup;
 

@@ -19,7 +19,7 @@ package com.icst.logic.editor.view;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.EventBean;
+import com.icst.blockidle.bean.EventBean;
 import com.icst.logic.config.LogicEditorConfiguration;
 import com.icst.logic.editor.CanvaAction;
 import com.icst.logic.editor.action.CanvaActionMoveDropZone;

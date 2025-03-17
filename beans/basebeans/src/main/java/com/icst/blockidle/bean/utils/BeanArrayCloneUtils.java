@@ -15,12 +15,12 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.beans.utils;
+package com.icst.blockidle.bean.utils;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.CloneableBean;
-import com.icst.blockidle.beans.DatatypeBean;
+import com.icst.blockidle.bean.CloneableBean;
+import com.icst.blockidle.bean.DatatypeBean;
 
 public final class BeanArrayCloneUtils {
 	public static <T extends CloneableBean> ArrayList<T> clone(ArrayList<T> beans) {

@@ -20,8 +20,8 @@ package com.icst.logic.block.view;
 import java.util.ArrayList;
 
 import com.icst.blockidle.bean.RegularBlockBean;
-import com.icst.blockidle.beans.ActionBlockBean;
-import com.icst.blockidle.beans.LayerBean;
+import com.icst.blockidle.bean.ActionBlockBean;
+import com.icst.blockidle.bean.LayerBean;
 import com.icst.logic.builder.LayerViewFactory;
 import com.icst.logic.config.LogicEditorConfiguration;
 import com.icst.logic.editor.view.LogicEditorView;

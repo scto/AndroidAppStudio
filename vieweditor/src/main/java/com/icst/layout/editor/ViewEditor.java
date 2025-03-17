@@ -26,9 +26,9 @@ import com.elfilibustero.uidesigner.lib.handler.AttributeSetHandler;
 import com.elfilibustero.uidesigner.lib.utils.Constants;
 import com.elfilibustero.uidesigner.lib.view.ShadowView;
 import com.elfilibustero.uidesigner.ui.designer.LayoutDesigner;
-import com.icst.blockidle.beans.LayoutBean;
-import com.icst.blockidle.beans.ViewAttributeBean;
-import com.icst.blockidle.beans.ViewBean;
+import com.icst.blockidle.bean.LayoutBean;
+import com.icst.blockidle.bean.ViewAttributeBean;
+import com.icst.blockidle.bean.ViewBean;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -17,7 +17,7 @@
 
 package com.icst.logic.block.view;
 
-import com.icst.blockidle.beans.ExpressionBlockBean;
+import com.icst.blockidle.bean.ExpressionBlockBean;
 import com.icst.logic.config.LogicEditorConfiguration;
 import com.icst.logic.editor.view.LogicEditorView;
 

@@ -19,11 +19,11 @@ package com.icst.blockidle.bean;
 
 import java.io.Serializable;
 
-import com.icst.blockidle.beans.utils.BeanArrayCloneUtils;
-import com.icst.blockidle.beans.utils.BlockBeansUIDConstants;
+import com.icst.blockidle.bean.utils.BeanArrayCloneUtils;
+import com.icst.blockidle.bean.utils.BlockBeansUIDConstants;
 
 /** RegularBlockBean: Can hold RegularBlockBean (nested blocks), BlockElementBean */
-public class RegularBlockBean extends com.icst.blockidle.beans.ActionBlockBean<RegularBlockBean>
+public class RegularBlockBean extends com.icst.blockidle.bean.ActionBlockBean<RegularBlockBean>
 		implements Serializable {
 
 	public static final long serialVersionUID = BlockBeansUIDConstants.BLOCK_BEAN;

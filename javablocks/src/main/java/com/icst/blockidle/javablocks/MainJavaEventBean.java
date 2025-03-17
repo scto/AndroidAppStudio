@@ -19,13 +19,13 @@ package com.icst.blockidle.javablocks;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.ActionBlockBean;
-import com.icst.blockidle.beans.BlockElementBean;
-import com.icst.blockidle.beans.BlockElementLayerBean;
-import com.icst.blockidle.beans.EventBean;
-import com.icst.blockidle.beans.EventBlockBean;
-import com.icst.blockidle.beans.LabelBlockElementBean;
-import com.icst.blockidle.beans.utils.CodeFormatterUtils;
+import com.icst.blockidle.bean.ActionBlockBean;
+import com.icst.blockidle.bean.BlockElementBean;
+import com.icst.blockidle.bean.BlockElementLayerBean;
+import com.icst.blockidle.bean.EventBean;
+import com.icst.blockidle.bean.EventBlockBean;
+import com.icst.blockidle.bean.LabelBlockElementBean;
+import com.icst.blockidle.bean.utils.CodeFormatterUtils;
 
 public final class MainJavaEventBean {
 

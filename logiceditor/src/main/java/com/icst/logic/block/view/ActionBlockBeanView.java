@@ -19,8 +19,8 @@ package com.icst.logic.block.view;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.ActionBlockBean;
-import com.icst.blockidle.beans.BlockBean;
+import com.icst.blockidle.bean.ActionBlockBean;
+import com.icst.blockidle.bean.BlockBean;
 import com.icst.logic.config.LogicEditorConfiguration;
 import com.icst.logic.editor.view.LogicEditorView;
 import com.icst.logic.utils.CanvaMathUtils;

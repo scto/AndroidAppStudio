@@ -17,7 +17,7 @@
 
 package com.icst.logic.view;
 
-import com.icst.blockidle.beans.BlockPaletteBean;
+import com.icst.blockidle.bean.BlockPaletteBean;
 import com.icst.logic.utils.ColorUtils;
 import com.icst.logic.utils.UnitUtils;
 

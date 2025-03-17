@@ -17,11 +17,11 @@
 
 package com.icst.logic.builder;
 
-import com.icst.blockidle.beans.BooleanBlockBean;
-import com.icst.blockidle.beans.ExpressionBlockBean;
-import com.icst.blockidle.beans.GeneralExpressionBlockBean;
-import com.icst.blockidle.beans.NumericBlockBean;
-import com.icst.blockidle.beans.StringBlockBean;
+import com.icst.blockidle.bean.BooleanBlockBean;
+import com.icst.blockidle.bean.ExpressionBlockBean;
+import com.icst.blockidle.bean.GeneralExpressionBlockBean;
+import com.icst.blockidle.bean.NumericBlockBean;
+import com.icst.blockidle.bean.StringBlockBean;
 import com.icst.logic.block.view.BooleanBlockView;
 import com.icst.logic.block.view.ExpressionBlockBeanView;
 import com.icst.logic.block.view.GeneralExpressionBlockView;

@@ -17,7 +17,7 @@
 
 package com.icst.logic.view;
 
-import com.icst.blockidle.beans.ValueInputBlockElementBean;
+import com.icst.blockidle.bean.ValueInputBlockElementBean;
 import com.icst.logic.block.view.BlockBeanView;
 import com.icst.logic.utils.ColorUtils;
 import com.icst.logic.utils.UnitUtils;

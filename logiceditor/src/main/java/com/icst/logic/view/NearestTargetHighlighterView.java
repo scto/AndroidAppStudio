@@ -17,11 +17,11 @@
 
 package com.icst.logic.view;
 
-import com.icst.blockidle.beans.ActionBlockBean;
-import com.icst.blockidle.beans.BlockBean;
-import com.icst.blockidle.beans.GeneralExpressionBlockBean;
-import com.icst.blockidle.beans.NumericBlockBean;
-import com.icst.blockidle.beans.StringBlockBean;
+import com.icst.blockidle.bean.ActionBlockBean;
+import com.icst.blockidle.bean.BlockBean;
+import com.icst.blockidle.bean.GeneralExpressionBlockBean;
+import com.icst.blockidle.bean.NumericBlockBean;
+import com.icst.blockidle.bean.StringBlockBean;
 import com.icst.logic.config.LogicEditorConfiguration;
 import com.icst.logic.utils.BlockImageUtils;
 import com.icst.logic.utils.ColorUtils;

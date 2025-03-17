@@ -17,10 +17,10 @@
 
 package com.icst.logic.view;
 
-import com.icst.blockidle.beans.BlockBean;
-import com.icst.blockidle.beans.ExpressionBlockBean;
-import com.icst.blockidle.beans.NumericBlockBean;
-import com.icst.blockidle.beans.NumericBlockElementBean;
+import com.icst.blockidle.bean.BlockBean;
+import com.icst.blockidle.bean.ExpressionBlockBean;
+import com.icst.blockidle.bean.NumericBlockBean;
+import com.icst.blockidle.bean.NumericBlockElementBean;
 import com.icst.logic.block.view.BlockBeanView;
 import com.icst.logic.block.view.NumericBlockBeanView;
 import com.icst.logic.config.LogicEditorConfiguration;

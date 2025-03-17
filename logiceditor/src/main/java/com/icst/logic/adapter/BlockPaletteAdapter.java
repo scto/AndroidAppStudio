@@ -19,7 +19,7 @@ package com.icst.logic.adapter;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.beans.BlockPaletteBean;
+import com.icst.blockidle.bean.BlockPaletteBean;
 import com.icst.logic.config.LogicEditorConfiguration;
 import com.icst.logic.editor.view.LogicEditorView;
 import com.icst.logic.view.BlockPaletteView;

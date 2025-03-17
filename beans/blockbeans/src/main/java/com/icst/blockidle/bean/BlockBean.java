@@ -15,11 +15,11 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.beans;
+package com.icst.blockidle.bean;
 
 import java.io.Serializable;
 
-import com.icst.blockidle.beans.utils.BlockBeansUIDConstants;
+import com.icst.blockidle.bean.utils.BlockBeansUIDConstants;
 
 /** Abstract class representing the base block supposed to be used within the LogicEditor. */
 public abstract class BlockBean<T> implements Serializable, CloneableBean<T> {
