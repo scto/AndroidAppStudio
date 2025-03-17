@@ -36,4 +36,8 @@ public class ProjectAdapterViewModel extends ViewModel {
 	public String getProjectVersionName() {
 		return projectBean.getProjectVersionName();
 	}
+
+	public String getProjectNameFirstLetter() {
+		return String.valueOf(getProjectName().charAt(0));
+	}
 }

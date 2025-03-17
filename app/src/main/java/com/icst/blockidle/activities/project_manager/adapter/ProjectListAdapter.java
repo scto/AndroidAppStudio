@@ -33,7 +33,6 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 		ProjectAdapterViewModel mProjectAdapterViewModel = new ProjectAdapterViewModel();
 		mProjectAdapterViewModel.setProjectBean(data.get(position));
 		binding.setViewModel(mProjectAdapterViewModel);
-		binding.letterImageView.setLetter(data.get(position).getProjectName().charAt(0));
 	}
 
 	@Override
