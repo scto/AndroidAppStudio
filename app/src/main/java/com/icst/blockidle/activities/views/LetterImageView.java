@@ -2,7 +2,10 @@ package com.icst.blockidle.activities.views;
 
 import java.util.Random;
 
+import com.icst.blockidle.R;
+
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -40,6 +43,17 @@ public class LetterImageView extends View {
 	public LetterImageView(Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
 		init();
+
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LetterImageView);
+
+		String letterStr = a.getString(R.styleable.LetterImageView_letter);
+		if (letterStr != null && letterStr.length() == 1) {
+			letter = letterStr.charAt(0);
+		} else {
+			throw new IllegalArgumentException("Attribute 'letter' must be a single character.");
+		}
+
+		a.recycle();
 	}
 
 	public LetterImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
