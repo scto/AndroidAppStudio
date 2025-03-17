@@ -17,109 +17,68 @@
 
 package com.icst.blockidle.repository;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.icst.blockidle.bean.ProjectBean;
+import com.icst.blockidle.util.EnvironmentUtils;
+import com.icst.blockidle.util.SerializationUtils;
 
 import androidx.lifecycle.MutableLiveData;
 
 public class ProjectRepository {
 
 	private ArrayList<ProjectBean> mProjects;
+	private MutableLiveData<ArrayList<ProjectBean>> data;
 	private static ProjectRepository projectRepository;
 
 	public static final ProjectRepository getInstance() {
 		if (projectRepository == null) {
 			projectRepository = new ProjectRepository();
-			projectRepository.mProjects = getDummyProjects();
+			projectRepository.loadProjects();
 		}
 		return projectRepository;
 	}
 
 	public MutableLiveData<ArrayList<ProjectBean>> getMutableLiveProjects() {
-		// TODO: Fetch the fresh project list but curently return as it is.
-		MutableLiveData<ArrayList<ProjectBean>> data = new MutableLiveData<ArrayList<ProjectBean>>();
-		data.setValue(mProjects);
 		return data;
 	}
 
-	// Currently Dummy Projects
-	private static ArrayList<ProjectBean> getDummyProjects() {
-		ArrayList<ProjectBean> projects = new ArrayList<>();
+	public void loadProjects() {
+		mProjects = new ArrayList<ProjectBean>();
+		File projectsDir = EnvironmentUtils.projectDirectory;
 
-		ProjectBean project1 = new ProjectBean();
-		project1.setProjectName("Block Editor");
-		project1.setProjectVersionName("1.0.0");
-		project1.setProjectVersion("100");
+		for (File file : projectsDir.listFiles()) {
+			File projectBean = new File(file, EnvironmentUtils.PROJECT_BEAN_FILE);
+			if (!projectBean.exists()) {
+				continue;
+			}
 
-		ProjectBean project2 = new ProjectBean();
-		project2.setProjectName("XML Parser");
-		project2.setProjectVersionName("2.1.0");
-		project2.setProjectVersion("210");
+			SerializationUtils.deserialize(
+					projectBean,
+					new SerializationUtils.DeserializationListener() {
 
-		ProjectBean project3 = new ProjectBean();
-		project3.setProjectName("Gradle IDE");
-		project3.setProjectVersionName("0.9.5");
-		project3.setProjectVersion("95");
+						@Override
+						public void onDeserializationSucess(Serializable object) {
+							if (!ProjectBean.class.isInstance(object)) {
+								return;
+							}
 
-		ProjectBean project4 = new ProjectBean();
-		project4.setProjectName("Java Compiler");
-		project4.setProjectVersionName("3.0.2");
-		project4.setProjectVersion("302");
+							mProjects.add(ProjectBean.class.cast(object));
+						}
 
-		ProjectBean project5 = new ProjectBean();
-		project5.setProjectName("Kotlin Playground");
-		project5.setProjectVersionName("1.5.1");
-		project5.setProjectVersion("151");
+						@Override
+						public void onDeserializationFailed(int errorCode, Exception e) {
+						}
+					});
+		}
 
-		ProjectBean project6 = new ProjectBean();
-		project6.setProjectName("Android Build Tool");
-		project6.setProjectVersionName("4.2.0");
-		project6.setProjectVersion("420");
-
-		ProjectBean project7 = new ProjectBean();
-		project7.setProjectName("Terminal Emulator");
-		project7.setProjectVersionName("2.8.3");
-		project7.setProjectVersion("283");
-
-		ProjectBean project8 = new ProjectBean();
-		project8.setProjectName("Script Runner");
-		project8.setProjectVersionName("1.7.0");
-		project8.setProjectVersion("170");
-
-		ProjectBean project9 = new ProjectBean();
-		project9.setProjectName("Python Executor");
-		project9.setProjectVersionName("3.9.1");
-		project9.setProjectVersion("391");
-
-		ProjectBean project10 = new ProjectBean();
-		project10.setProjectName("Java Debugger");
-		project10.setProjectVersionName("2.4.0");
-		project10.setProjectVersion("240");
-
-		ProjectBean project11 = new ProjectBean();
-		project11.setProjectName("Project Manager");
-		project11.setProjectVersionName("1.0.5");
-		project11.setProjectVersion("105");
-
-		ProjectBean project12 = new ProjectBean();
-		project12.setProjectName("UI Layout Designer");
-		project12.setProjectVersionName("3.2.1");
-		project12.setProjectVersion("321");
-
-		projects.add(project1);
-		projects.add(project2);
-		projects.add(project3);
-		projects.add(project4);
-		projects.add(project5);
-		projects.add(project6);
-		projects.add(project7);
-		projects.add(project8);
-		projects.add(project9);
-		projects.add(project10);
-		projects.add(project11);
-		projects.add(project12);
-
-		return projects;
+		if (data == null) {
+			data = new MutableLiveData<ArrayList<ProjectBean>>();
+			data.setValue(mProjects);
+		} else {
+			data.postValue(mProjects);
+		}
 	}
 }

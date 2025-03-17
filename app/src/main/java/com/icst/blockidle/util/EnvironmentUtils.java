@@ -21,7 +21,9 @@ import java.io.File;
 
 import android.content.Context;
 
-public final class EnvironmentUtils {
+public class EnvironmentUtils {
+
+	public static final String PROJECT_BEAN_FILE = "ProjectBean";
 
 	public static File projectDirectory;
 
