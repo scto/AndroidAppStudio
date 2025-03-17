@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import com.icst.blockidle.R;
 import com.icst.blockidle.activities.project_manager.adapter.ProjectListAdapter;
+import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.databinding.ActivityProjectManagerBinding;
 import com.icst.blockidle.util.EnvironmentUtils;
+import com.icst.blockidle.viewmodel.ProjectManagerViewModel;
 
 import android.os.Bundle;
 
@@ -15,11 +17,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class ProjectManagerActivity extends AppCompatActivity {
 
 	private ActivityProjectManagerBinding binding;
+	private ProjectListAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +39,20 @@ public class ProjectManagerActivity extends AppCompatActivity {
 		// set content view to binding's root
 		setContentView(binding.getRoot());
 
-		//Calling Methods
+		// Calling Methods
 		UI();
 	}
 
 	private void UI() {
-		//System Padding
-		ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (v, insets) -> {
-			Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-			return insets;
-		});
+		// System Padding
+		ViewCompat.setOnApplyWindowInsetsListener(
+				binding.getRoot(),
+				(v, insets) -> {
+					Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+					v.setPadding(
+							systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+					return insets;
+				});
 
 		// Toolbar
 		setSupportActionBar(binding.toolbar);
@@ -52,16 +60,23 @@ public class ProjectManagerActivity extends AppCompatActivity {
 		getSupportActionBar().setHomeButtonEnabled(true);
 		binding.toolbar.setTitle(R.string.app_name);
 
-		ArrayList<String> data = new ArrayList<>();
+		ProjectManagerViewModel mProjectManagerViewModel = new ViewModelProvider(this)
+				.get(ProjectManagerViewModel.class);
+		mProjectManagerViewModel
+				.getProjects()
+				.observe(
+						this,
+						new Observer<ArrayList<ProjectBean>>() {
 
-		for (int i = 0; i < 8; i++) {
-			data.add("Block-IDE");
-		}
-
-		//List
+							@Override
+							public void onChanged(ArrayList<ProjectBean> data) {
+								adapter.notifyDataSetChanged();
+							}
+						});
+		// List
+		adapter = new ProjectListAdapter(mProjectManagerViewModel.getProjects().getValue());
 		binding.projectList.setLayoutManager(new LinearLayoutManager(this));
-		binding.projectList.setAdapter(new ProjectListAdapter(data));
-
+		binding.projectList.setAdapter(adapter);
 	}
 
 	@Override
