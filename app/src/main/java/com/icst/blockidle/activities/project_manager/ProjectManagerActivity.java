@@ -1,11 +1,11 @@
 package com.icst.blockidle.activities.project_manager;
 
-import com.icst.blockidle.util.EnvironmentUtils;
 import java.util.ArrayList;
 
 import com.icst.blockidle.R;
 import com.icst.blockidle.activities.project_manager.adapter.ProjectListAdapter;
 import com.icst.blockidle.databinding.ActivityProjectManagerBinding;
+import com.icst.blockidle.util.EnvironmentUtils;
 
 import android.os.Bundle;
 

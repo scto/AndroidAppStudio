@@ -17,29 +17,30 @@
 
 package com.icst.blockidle.viewmodel;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import java.util.ArrayList;
+
 import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.repository.ProjectRepository;
 
-import java.util.ArrayList;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 public class ProjectViewModel extends ViewModel {
 
-    private final MutableLiveData<ArrayList<ProjectBean>> projects;
-    private final ProjectRepository repository;
+	private final MutableLiveData<ArrayList<ProjectBean>> projects;
+	private final ProjectRepository repository;
 
-    public ProjectViewModel() {
-        repository = ProjectRepository.getInstance();
-        projects = repository.getMutableLiveProjects();
-    }
+	public ProjectViewModel() {
+		repository = ProjectRepository.getInstance();
+		projects = repository.getMutableLiveProjects();
+	}
 
-    public LiveData<ArrayList<ProjectBean>> getProjects() {
-        return projects;
-    }
+	public LiveData<ArrayList<ProjectBean>> getProjects() {
+		return projects;
+	}
 
-    public void refreshProjects() {
-        projects.postValue(repository.getMutableLiveProjects().getValue());
-    }
+	public void refreshProjects() {
+		projects.postValue(repository.getMutableLiveProjects().getValue());
+	}
 }

@@ -17,16 +17,16 @@
 
 package com.icst.blockidle.util;
 
-import android.content.Context;
-import android.os.Environment;
 import java.io.File;
+
+import android.content.Context;
 
 public final class EnvironmentUtils {
 
-    public static File projectDirectory;
+	public static File projectDirectory;
 
-    public static void init(Context context) {
-        projectDirectory = context.getExternalFilesDir("Projects");
-        projectDirectory.mkdirs();
-    }
+	public static void init(Context context) {
+		projectDirectory = context.getExternalFilesDir("Projects");
+		projectDirectory.mkdirs();
+	}
 }
