@@ -22,7 +22,7 @@ import java.io.Serializable;
 import com.icst.blockidle.bean.utils.BeanArrayCloneUtils;
 import com.icst.blockidle.bean.utils.BlockBeansUIDConstants;
 
-/** RegularBlockBean: Can hold RegularBlockBean (nested blocks), BlockElementBean */
+/** RegularBlockBean: Can hold all kind of LayerBean, for example BlockElementLayerBean & ActionBlockLayerBean and further ActionBlockBean can be added below it. */
 public class RegularBlockBean extends ActionBlockBean<RegularBlockBean>
 		implements Serializable {
 

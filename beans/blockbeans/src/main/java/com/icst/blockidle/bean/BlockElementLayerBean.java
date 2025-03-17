@@ -23,9 +23,7 @@ import java.util.ArrayList;
 import com.icst.blockidle.bean.utils.BeanArrayCloneUtils;
 import com.icst.blockidle.bean.utils.BlockBeansUIDConstants;
 
-/** A Bean that holds a group of Block elements. Used to store the Block items,
- * block elements but
- * does not hold nested blocks. */
+/** A Bean that holds a group of Block elements. Used to store the Block items, block elements but does not hold nested blocks.*/
 public class BlockElementLayerBean extends LayerBean<BlockElementLayerBean>
 		implements Serializable {
 

@@ -24,7 +24,7 @@ import com.icst.blockidle.bean.utils.BlockBeansUIDConstants;
 import com.icst.blockidle.bean.utils.CodeFormatterUtils;
 import com.icst.blockidle.bean.utils.InputValueFormatter;
 
-/** ActionBlockBean, BlockBean that perform action. */
+/** ActionBlockBean, BlockBean that perform action, can hold ActionBlockLayerBean & BlockElementLayerBean. */
 public abstract class ActionBlockBean<T> extends BlockBean<T>
 		implements CodeProcessorBean, Serializable {
 

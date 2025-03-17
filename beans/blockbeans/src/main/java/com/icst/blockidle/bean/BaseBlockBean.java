@@ -22,9 +22,7 @@ import java.util.ArrayList;
 
 import com.icst.blockidle.bean.utils.BlockBeansUIDConstants;
 
-/** A basic BlockBean model that just hold fields layer (not nested block) and
- * does not return any
- * code from it. */
+/** ActionBlockBean, BlockBean that can only hold BlockElementLayerBean. */
 public abstract class BaseBlockBean<T> extends BlockBean<T> implements Serializable {
 
 	public static final long serialVersionUID = BlockBeansUIDConstants.BASE_BLOCK_BEAN;
