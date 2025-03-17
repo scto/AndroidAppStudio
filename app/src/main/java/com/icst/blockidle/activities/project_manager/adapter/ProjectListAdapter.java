@@ -7,6 +7,7 @@ import com.icst.blockidle.databinding.ProjectListItemBinding;
 import com.icst.blockidle.viewmodel.ProjectAdapterViewModel;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.ViewHolder> {
 
 	private final ArrayList<ProjectBean> data;
+	private ProjectListItemBinding binding;
 
 	public ProjectListAdapter(ArrayList<ProjectBean> data) {
 		this.data = data;
@@ -22,21 +24,16 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 
 	@NonNull @Override
 	public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		return new ViewHolder(
-				ProjectListItemBinding.inflate(LayoutInflater.from(parent.getContext())));
+		binding = ProjectListItemBinding.inflate(LayoutInflater.from(parent.getContext()));
+		return new ViewHolder(binding.getRoot());
 	}
 
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-		ProjectListItemBinding binding = holder.getProjectListItemBinding();
-
-		// Get a ViewModel
 		ProjectAdapterViewModel mProjectAdapterViewModel = new ProjectAdapterViewModel();
-
-		// Set ViewModel data
 		mProjectAdapterViewModel.setProjectBean(data.get(position));
-
 		binding.setViewModel(mProjectAdapterViewModel);
+		binding.letterImageView.setLetter(data.get(position).getProjectName().charAt(0));
 	}
 
 	@Override
@@ -45,19 +42,8 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 	}
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
-		private ProjectListItemBinding projectListItemBinding;
-
-		public ViewHolder(@NonNull ProjectListItemBinding binding) {
-			super(binding.getRoot());
-			projectListItemBinding = binding;
-		}
-
-		public ProjectListItemBinding getProjectListItemBinding() {
-			return this.projectListItemBinding;
-		}
-
-		public void setProjectListItemBinding(ProjectListItemBinding projectListItemBinding) {
-			this.projectListItemBinding = projectListItemBinding;
+		public ViewHolder(@NonNull View binding) {
+			super(binding);
 		}
 	}
 }

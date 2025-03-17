@@ -1,5 +1,7 @@
 package com.icst.blockidle.activities.views;
 
+import java.util.Random;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,6 +19,18 @@ public class LetterImageView extends View {
 	private Paint circlePaint;
 	private Paint textPaint;
 	private final Rect textBounds = new Rect();
+	private final Random random = new Random();
+
+	private final int[] coolColors = new int[] {
+			Color.parseColor("#FAF1E6"), // Deep Orange
+			Color.parseColor("#FDFAF6"), // Green
+			Color.parseColor("#E4EFE7"), // Blue
+			Color.parseColor("#99BC85"), // Purple
+			Color.parseColor("#F5ECE0"), // Yellow
+			Color.parseColor("#D76C82"), // Cyan
+			Color.parseColor("#98D2C0"), // Pink
+			Color.parseColor("#66D2CE") // Amber
+	};
 
 	public LetterImageView(Context context) {
 		super(context);
@@ -35,16 +49,17 @@ public class LetterImageView extends View {
 
 	private void init() {
 		circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		circlePaint.setColor(Color.WHITE); // Background circle color
+		circlePaint.setColor(Color.WHITE); // Default background circle color
 
 		textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		textPaint.setColor(Color.DKGRAY); // Text color
+		textPaint.setColor(Color.DKGRAY); // Default text color
 		textPaint.setTextSize(60f); // Adjust as needed
 		textPaint.setTextAlign(Paint.Align.CENTER);
 	}
 
 	public void setLetter(char letter) {
 		this.letter = letter;
+		setRandomCoolColor();
 		invalidate(); // Redraw the view
 	}
 
@@ -61,6 +76,11 @@ public class LetterImageView extends View {
 	public void setTextSize(float size) {
 		textPaint.setTextSize(size);
 		invalidate();
+	}
+
+	public void setRandomCoolColor() {
+		int randomColor = coolColors[random.nextInt(coolColors.length)];
+		setCircleColor(randomColor);
 	}
 
 	@Override

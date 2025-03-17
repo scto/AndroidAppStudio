@@ -19,6 +19,7 @@ package com.icst.blockidle.javablocks;
 
 import java.util.ArrayList;
 
+import com.icst.blockidle.bean.RegularBlockBean;
 import com.icst.blockidle.beans.ActionBlockLayerBean;
 import com.icst.blockidle.beans.BlockBean;
 import com.icst.blockidle.beans.BlockElementBean;
@@ -27,7 +28,6 @@ import com.icst.blockidle.beans.BlockPaletteBean;
 import com.icst.blockidle.beans.BooleanBlockElementBean;
 import com.icst.blockidle.beans.LabelBlockElementBean;
 import com.icst.blockidle.beans.LayerBean;
-import com.icst.blockidle.beans.RegularBlockBean;
 import com.icst.blockidle.beans.utils.BuiltInDatatypes;
 import com.icst.blockidle.beans.utils.CodeFormatterUtils;
 
@@ -44,7 +44,7 @@ public final class ControlBlockBeans {
 		return mIOBlockPalette;
 	}
 
-	private static RegularBlockBean ifBlock() {
+	private static BlockBean ifBlock() {
 		RegularBlockBean block = new RegularBlockBean();
 		block.setColor("#FFC041");
 
@@ -84,7 +84,7 @@ public final class ControlBlockBeans {
 		return block;
 	}
 
-	private static RegularBlockBean ifElseBlock() {
+	private static BlockBean ifElseBlock() {
 		RegularBlockBean block = new RegularBlockBean();
 		block.setColor("#FFC041");
 

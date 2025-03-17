@@ -15,7 +15,7 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.beans;
+package com.icst.blockidle.bean;
 
 import java.io.Serializable;
 
@@ -23,7 +23,8 @@ import com.icst.blockidle.beans.utils.BeanArrayCloneUtils;
 import com.icst.blockidle.beans.utils.BlockBeansUIDConstants;
 
 /** RegularBlockBean: Can hold RegularBlockBean (nested blocks), BlockElementBean */
-public class RegularBlockBean extends ActionBlockBean<RegularBlockBean> implements Serializable {
+public class RegularBlockBean extends com.icst.blockidle.beans.ActionBlockBean<RegularBlockBean>
+		implements Serializable {
 
 	public static final long serialVersionUID = BlockBeansUIDConstants.BLOCK_BEAN;
 
