@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.icst.blockidle.bean.ProjectBean;
+import com.icst.blockidle.exception.ProjectUpdateException;
 import com.icst.blockidle.util.EnvironmentUtils;
 import com.icst.blockidle.util.ProjectFile;
 import com.icst.blockidle.util.SerializationUtils;
@@ -81,5 +82,29 @@ public class ProjectRepository {
 		} else {
 			data.postValue(mProjects);
 		}
+	}
+
+	public void updateProject(ProjectFile projectFile) throws ProjectUpdateException {
+		File projectBeanFile = new File(projectFile.getFile(), EnvironmentUtils.PROJECT_BEAN_FILE);
+
+		if (!projectBeanFile.exists()) {
+			throw new ProjectUpdateException(ProjectUpdateException.PROJECT_NOT_FOUND);
+		}
+
+		SerializationUtils.serialize(
+				projectFile.getProjectBean(),
+				projectBeanFile,
+				new SerializationUtils.SerializationListener() {
+
+					@Override
+					public void onSerializationSucess() {
+					}
+
+					@Override
+					public void onSerializationFailed(Exception exception) {
+						// Not gonna fail...
+					}
+				});
+
 	}
 }
