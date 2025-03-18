@@ -2,8 +2,8 @@ package com.icst.blockidle.activities.project_manager.adapter;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.databinding.ProjectListItemBinding;
+import com.icst.blockidle.util.ProjectFile;
 import com.icst.blockidle.viewmodel.ProjectAdapterViewModel;
 
 import android.view.LayoutInflater;
@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.ViewHolder> {
 
-	private final ArrayList<ProjectBean> data;
+	private final ArrayList<ProjectFile> data;
 	private ProjectListItemBinding binding;
 
-	public ProjectListAdapter(ArrayList<ProjectBean> data) {
+	public ProjectListAdapter(ArrayList<ProjectFile> data) {
 		this.data = data;
 	}
 
@@ -31,7 +31,7 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 		ProjectAdapterViewModel mProjectAdapterViewModel = new ProjectAdapterViewModel();
-		mProjectAdapterViewModel.setProjectBean(data.get(position));
+		mProjectAdapterViewModel.setProjectFile(data.get(position));
 		binding.setViewModel(mProjectAdapterViewModel);
 	}
 

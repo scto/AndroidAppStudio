@@ -23,14 +23,15 @@ import java.util.ArrayList;
 
 import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.util.EnvironmentUtils;
+import com.icst.blockidle.util.ProjectFile;
 import com.icst.blockidle.util.SerializationUtils;
 
 import androidx.lifecycle.MutableLiveData;
 
 public class ProjectRepository {
 
-	private ArrayList<ProjectBean> mProjects;
-	private MutableLiveData<ArrayList<ProjectBean>> data;
+	private ArrayList<ProjectFile> mProjects;
+	private MutableLiveData<ArrayList<ProjectFile>> data;
 	private static ProjectRepository projectRepository;
 
 	public static final ProjectRepository getInstance() {
@@ -41,12 +42,12 @@ public class ProjectRepository {
 		return projectRepository;
 	}
 
-	public MutableLiveData<ArrayList<ProjectBean>> getMutableLiveProjects() {
+	public MutableLiveData<ArrayList<ProjectFile>> getMutableLiveProjects() {
 		return data;
 	}
 
 	public void loadProjects() {
-		mProjects = new ArrayList<ProjectBean>();
+		mProjects = new ArrayList<ProjectFile>();
 		File projectsDir = EnvironmentUtils.projectDirectory;
 
 		for (File file : projectsDir.listFiles()) {
@@ -64,8 +65,8 @@ public class ProjectRepository {
 							if (!ProjectBean.class.isInstance(object)) {
 								return;
 							}
-
-							mProjects.add(ProjectBean.class.cast(object));
+							ProjectFile projectFile = new ProjectFile(file, ProjectBean.class.cast(object));
+							mProjects.add(projectFile);
 						}
 
 						@Override
@@ -75,7 +76,7 @@ public class ProjectRepository {
 		}
 
 		if (data == null) {
-			data = new MutableLiveData<ArrayList<ProjectBean>>();
+			data = new MutableLiveData<ArrayList<ProjectFile>>();
 			data.setValue(mProjects);
 		} else {
 			data.postValue(mProjects);

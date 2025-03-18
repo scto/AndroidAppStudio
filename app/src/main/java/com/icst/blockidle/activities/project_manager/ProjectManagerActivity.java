@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import com.icst.blockidle.R;
 import com.icst.blockidle.activities.project_manager.adapter.ProjectListAdapter;
-import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.databinding.ActivityProjectManagerBinding;
 import com.icst.blockidle.util.EnvironmentUtils;
+import com.icst.blockidle.util.ProjectFile;
 import com.icst.blockidle.viewmodel.ProjectManagerViewModel;
 
 import android.os.Bundle;
@@ -66,10 +66,10 @@ public class ProjectManagerActivity extends AppCompatActivity {
 				.getProjects()
 				.observe(
 						this,
-						new Observer<ArrayList<ProjectBean>>() {
+						new Observer<ArrayList<ProjectFile>>() {
 
 							@Override
-							public void onChanged(ArrayList<ProjectBean> data) {
+							public void onChanged(ArrayList<ProjectFile> data) {
 								adapter.notifyDataSetChanged();
 							}
 						});

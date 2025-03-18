@@ -19,8 +19,8 @@ package com.icst.blockidle.viewmodel;
 
 import java.util.ArrayList;
 
-import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.repository.ProjectRepository;
+import com.icst.blockidle.util.ProjectFile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -28,7 +28,7 @@ import androidx.lifecycle.ViewModel;
 
 public class ProjectManagerViewModel extends ViewModel {
 
-	private final MutableLiveData<ArrayList<ProjectBean>> projects;
+	private final MutableLiveData<ArrayList<ProjectFile>> projects;
 	private final ProjectRepository repository;
 
 	public ProjectManagerViewModel() {
@@ -36,7 +36,7 @@ public class ProjectManagerViewModel extends ViewModel {
 		projects = repository.getMutableLiveProjects();
 	}
 
-	public LiveData<ArrayList<ProjectBean>> getProjects() {
+	public LiveData<ArrayList<ProjectFile>> getProjects() {
 		return projects;
 	}
 

@@ -17,24 +17,24 @@
 
 package com.icst.blockidle.viewmodel;
 
-import com.icst.blockidle.bean.ProjectBean;
+import com.icst.blockidle.util.ProjectFile;
 
 import androidx.lifecycle.ViewModel;
 
 public class ProjectAdapterViewModel extends ViewModel {
 
-	private ProjectBean projectBean;
+	private ProjectFile projectFile;
 
-	public void setProjectBean(ProjectBean projectBean) {
-		this.projectBean = projectBean;
+	public void setProjectFile(ProjectFile projectFile) {
+		this.projectFile = projectFile;
 	}
 
 	public String getProjectName() {
-		return projectBean.getProjectName();
+		return projectFile.getProjectBean().getProjectName();
 	}
 
 	public String getProjectVersionName() {
-		return projectBean.getProjectVersionName();
+		return projectFile.getProjectBean().getProjectVersionName();
 	}
 
 	public String getProjectNameFirstLetter() {
