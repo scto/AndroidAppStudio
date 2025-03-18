@@ -33,7 +33,7 @@ public final class SerializationUtils {
 	public static final int PATH_IS_DIRECTORY = 1;
 	public static final int ERROR_OCCURED_WHILE_DESERIALIZING = 2;
 
-	public void serialize(Serializable serializable, File file, SerializationListener listener) {
+	public static void serialize(Serializable serializable, File file, SerializationListener listener) {
 		try {
 			FileOutputStream fileOutputStream = new FileOutputStream(file);
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
