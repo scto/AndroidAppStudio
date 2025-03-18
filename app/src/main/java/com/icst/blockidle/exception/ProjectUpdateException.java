@@ -30,7 +30,7 @@ public class ProjectUpdateException extends Exception {
 	@Override
 	public String getMessage() {
 		if (errorCode == PROJECT_NOT_FOUND) {
-			return "Failed to modify because projecg was not found";
+			return "Failed to modify because project was not found";
 		}
 		return "";
 	}
