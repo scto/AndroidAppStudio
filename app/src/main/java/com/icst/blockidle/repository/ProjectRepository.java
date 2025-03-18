@@ -105,6 +105,10 @@ public class ProjectRepository {
 					public void onSerializationFailed(Exception exception) {
 					}
 				});
+
+		ProjectFile projectFile = new ProjectFile(newProjectDir, project);
+		mProjects.add(projectFile);
+		getMutableLiveProjects().postValue(mProjects);
 	}
 
 	public void updateProject(ProjectFile projectFile) throws ProjectUpdateException {
