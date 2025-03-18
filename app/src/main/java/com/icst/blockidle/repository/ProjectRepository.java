@@ -84,6 +84,29 @@ public class ProjectRepository {
 		}
 	}
 
+	public void createProject(ProjectBean project) {
+		File newProjectDir;
+		do {
+			String dir = String.valueOf(System.currentTimeMillis());
+			newProjectDir = new File(EnvironmentUtils.projectDirectory, dir);
+		} while (newProjectDir.exists());
+
+		newProjectDir.mkdirs();
+		SerializationUtils.serialize(
+				project,
+				new File(newProjectDir, EnvironmentUtils.PROJECT_BEAN_FILE),
+				new SerializationUtils.SerializationListener() {
+
+					@Override
+					public void onSerializationSucess() {
+					}
+
+					@Override
+					public void onSerializationFailed(Exception exception) {
+					}
+				});
+	}
+
 	public void updateProject(ProjectFile projectFile) throws ProjectUpdateException {
 		File projectBeanFile = new File(projectFile.getFile(), EnvironmentUtils.PROJECT_BEAN_FILE);
 
