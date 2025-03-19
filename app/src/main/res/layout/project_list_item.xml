@@ -30,7 +30,7 @@
                 android:paddingVertical="8dp">
 
                 <!-- Letter Image View -->
-                <com.icst.blockidle.activities.views.LetterImageView
+                <com.icst.blockidle.view.LetterImageView
                     android:id="@+id/letterImageView"
                     android:layout_width="48dp"
                     android:layout_height="48dp"

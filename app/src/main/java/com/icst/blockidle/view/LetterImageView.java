@@ -15,7 +15,7 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.activities.views;
+package com.icst.blockidle.view;
 
 import java.util.Random;
 
