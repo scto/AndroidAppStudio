@@ -2,5 +2,7 @@
 <resources>
     <string name="app_name">Block IDLE</string>
     <string name="create_a_new_project">Create a new project</string>
-
+	<string name="project_configuration">Project Configuration</string>
+    <string name="project_name">Project Name</string>
+	<string name="version_name">Version Name</string>
 </resources>
