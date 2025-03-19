@@ -33,7 +33,9 @@ public class ProjectConfigurationDialog extends MaterialAlertDialogBuilder {
 	private DialogProjectConfigBinding binding;
 	private AppCompatActivity activity;
 
-	public ProjectConfigurationDialog(AppCompatActivity activity, ProjectBean projectBean,
+	public ProjectConfigurationDialog(
+			AppCompatActivity activity,
+			ProjectBean projectBean,
 			ProjectConfigurationDialogListener listener) {
 		super(activity);
 		this.projectBean = projectBean;
@@ -42,7 +44,9 @@ public class ProjectConfigurationDialog extends MaterialAlertDialogBuilder {
 		init();
 	}
 
-	public ProjectConfigurationDialog(AppCompatActivity activity, ProjectConfigurationDialogListener listener) {
+	public ProjectConfigurationDialog(
+			AppCompatActivity activity,
+			ProjectConfigurationDialogListener listener) {
 		super(activity);
 		this.listener = listener;
 		this.activity = activity;
@@ -65,10 +69,23 @@ public class ProjectConfigurationDialog extends MaterialAlertDialogBuilder {
 
 	public String getVersionName() {
 		if (projectBean != null) {
-			return projectBean.getProjectVersionName() == null ? "" : projectBean.getProjectVersionName();
+			return projectBean.getProjectVersionName() == null
+					? ""
+					: projectBean.getProjectVersionName();
 		}
 
 		return "";
 	}
 
+	public String getConfigMode() {
+		if (projectBean == null) {
+			return "Create";
+		} else {
+			return "Update";
+		}
+	}
+
+	public void onCancel() {
+		listener.onCancel();
+	}
 }

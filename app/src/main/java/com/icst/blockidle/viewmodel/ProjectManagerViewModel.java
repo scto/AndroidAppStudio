@@ -81,6 +81,11 @@ public class ProjectManagerViewModel extends ViewModel {
 			public void onProjectConfigChange(ProjectBean projectBean) {
 				// Ignore, it is not gonna execute
 			}
+
+			@Override
+			public void onCancel() {
+				alertDialog.dismiss();
+			}
 		};
 
 		dialog = new ProjectConfigurationDialog(activity, projectDialogConfigListener);

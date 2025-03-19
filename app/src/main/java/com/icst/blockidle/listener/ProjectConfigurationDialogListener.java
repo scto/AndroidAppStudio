@@ -23,4 +23,6 @@ public interface ProjectConfigurationDialogListener {
 	void onCreateNewProject(ProjectBean newProjectBean);
 
 	void onProjectConfigChange(ProjectBean projectBean);
+
+	void onCancel();
 }

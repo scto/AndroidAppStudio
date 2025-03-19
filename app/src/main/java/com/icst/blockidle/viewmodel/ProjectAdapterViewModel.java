@@ -59,6 +59,12 @@ public class ProjectAdapterViewModel extends ViewModel {
 					Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
 				}
 			}
+
+			@Override
+			public void onCancel() {
+				alertDialog.dismiss();
+			}
+
 		};
 
 		dialog = new ProjectConfigurationDialog(activity, projectFile.getProjectBean(), projectDialogConfigListener);
