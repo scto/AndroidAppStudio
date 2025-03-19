@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.ViewHolder> {
@@ -49,6 +50,7 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 		ProjectAdapterViewModel mProjectAdapterViewModel = new ProjectAdapterViewModel();
 		mProjectAdapterViewModel.setProjectFile(data.get(position));
+		mProjectAdapterViewModel.setActivity(AppCompatActivity.class.cast(binding.getRoot().getContext()));
 		binding.setViewModel(mProjectAdapterViewModel);
 	}
 
