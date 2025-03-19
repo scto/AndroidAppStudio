@@ -19,9 +19,14 @@ package com.icst.blockidle.viewmodel;
 
 import java.util.ArrayList;
 
+import com.icst.blockidle.activities.project_manager.adapter.dialog.ProjectConfigurationDialog;
+import com.icst.blockidle.bean.ProjectBean;
+import com.icst.blockidle.listener.ProjectConfigurationDialogListener;
 import com.icst.blockidle.repository.ProjectRepository;
 import com.icst.blockidle.util.ProjectFile;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -30,6 +35,12 @@ public class ProjectManagerViewModel extends ViewModel {
 
 	private final MutableLiveData<ArrayList<ProjectFile>> projects;
 	private final ProjectRepository repository;
+
+	private AppCompatActivity activity;
+
+	private AlertDialog alertDialog;
+	private ProjectConfigurationDialog dialog;
+	private ProjectConfigurationDialogListener projectDialogConfigListener;
 
 	public ProjectManagerViewModel() {
 		repository = ProjectRepository.getInstance();
@@ -42,5 +53,34 @@ public class ProjectManagerViewModel extends ViewModel {
 
 	public void refreshProjects() {
 		projects.postValue(repository.getMutableLiveProjects().getValue());
+	}
+
+	public void createNewProject() {
+		alertDialog = dialog.create();
+		alertDialog.show();
+	}
+
+	public AppCompatActivity getActivity() {
+		return this.activity;
+	}
+
+	public void setActivity(AppCompatActivity activity) {
+		this.activity = activity;
+
+		projectDialogConfigListener = new ProjectConfigurationDialogListener() {
+
+			@Override
+			public void onCreateNewProject(ProjectBean newProjectBean) {
+				ProjectRepository.getInstance().createProject(newProjectBean);
+				alertDialog.dismiss();
+			}
+
+			@Override
+			public void onProjectConfigChange(ProjectBean projectBean) {
+				// Ignore, it is not gonna execute
+			}
+		};
+
+		dialog = new ProjectConfigurationDialog(activity, projectDialogConfigListener);
 	}
 }

@@ -60,6 +60,8 @@ public class ProjectAdapterViewModel extends ViewModel {
 				}
 			}
 		};
+
+		dialog = new ProjectConfigurationDialog(activity, projectFile.getProjectBean(), projectDialogConfigListener);
 	}
 
 	public void setProjectFile(ProjectFile projectFile) {
@@ -79,9 +81,8 @@ public class ProjectAdapterViewModel extends ViewModel {
 	}
 
 	public void onProjectSelected() {
-		dialog = new ProjectConfigurationDialog(
-				activity, projectFile.getProjectBean(), projectDialogConfigListener);
 		alertDialog = dialog.create();
+		alertDialog.show();
 	}
 
 	public AppCompatActivity getActivity() {

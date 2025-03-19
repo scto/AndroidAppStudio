@@ -42,6 +42,7 @@ public class ProjectManagerActivity extends AppCompatActivity {
 
 	private ActivityProjectManagerBinding binding;
 	private ProjectListAdapter adapter;
+	private ProjectManagerViewModel mProjectManagerViewModel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +51,13 @@ public class ProjectManagerActivity extends AppCompatActivity {
 		EdgeToEdge.enable(this);
 		EnvironmentUtils.init(this);
 
+		mProjectManagerViewModel = new ViewModelProvider(this)
+				.get(ProjectManagerViewModel.class);
+		mProjectManagerViewModel.setActivity(this);
+
 		// Inflate and get instance of binding
 		binding = ActivityProjectManagerBinding.inflate(getLayoutInflater());
+		binding.setViewModel(mProjectManagerViewModel);
 
 		// set content view to binding's root
 		setContentView(binding.getRoot());
@@ -77,8 +83,6 @@ public class ProjectManagerActivity extends AppCompatActivity {
 		getSupportActionBar().setHomeButtonEnabled(true);
 		binding.toolbar.setTitle(R.string.app_name);
 
-		ProjectManagerViewModel mProjectManagerViewModel = new ViewModelProvider(this)
-				.get(ProjectManagerViewModel.class);
 		mProjectManagerViewModel
 				.getProjects()
 				.observe(
