@@ -56,7 +56,9 @@ public class ProjectManagerViewModel extends ViewModel {
 	}
 
 	public void createNewProject() {
-		alertDialog = dialog.create();
+		if (alertDialog != null) {
+			alertDialog.dismiss();
+		}
 		alertDialog.show();
 	}
 
@@ -82,5 +84,6 @@ public class ProjectManagerViewModel extends ViewModel {
 		};
 
 		dialog = new ProjectConfigurationDialog(activity, projectDialogConfigListener);
+		alertDialog = dialog.create();
 	}
 }
