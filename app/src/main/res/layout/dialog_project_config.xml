@@ -12,20 +12,20 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="24dp">
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="@string/project_configuration"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:fontFamily="@font/noto_sans_semibold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="@string/project_name"
-            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
             android:id="@+id/projectNameTextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="@string/version_name"
-            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
 			android:text="Block IDLE"
             android:id="@+id/versionNameTextInputLayout">
 
