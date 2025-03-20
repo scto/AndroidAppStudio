@@ -21,6 +21,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.databinding.DialogProjectConfigBinding;
 import com.icst.blockidle.listener.ProjectConfigurationDialogListener;
+import com.icst.blockidle.viewmodel.ProjectConfigurationDialogViewModel;
 
 import android.view.LayoutInflater;
 
@@ -55,37 +56,12 @@ public class ProjectConfigurationDialog extends MaterialAlertDialogBuilder {
 
 	private void init() {
 		binding = DialogProjectConfigBinding.inflate(LayoutInflater.from(getContext()));
-		binding.setDialog(this);
+
+		ProjectConfigurationDialogViewModel viewModel = new ProjectConfigurationDialogViewModel();
+		viewModel.setProjectBean(projectBean);
+		viewModel.setListener(listener);
+
+		binding.setViewModel(viewModel);
 		setView(binding.getRoot());
-	}
-
-	public String getProjectName() {
-		if (projectBean != null) {
-			return projectBean.getProjectName() == null ? "" : projectBean.getProjectName();
-		}
-
-		return "";
-	}
-
-	public String getVersionName() {
-		if (projectBean != null) {
-			return projectBean.getProjectVersionName() == null
-					? ""
-					: projectBean.getProjectVersionName();
-		}
-
-		return "";
-	}
-
-	public String getConfigMode() {
-		if (projectBean == null) {
-			return "Create";
-		} else {
-			return "Update";
-		}
-	}
-
-	public void onCancel() {
-		listener.onCancel();
 	}
 }
