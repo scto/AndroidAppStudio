@@ -36,13 +36,12 @@ public class ProjectAdapterViewModel extends ViewModel {
 	//ViewModel
 	private ProjectFile projectFile;
 	@SuppressLint("StaticFieldLeak")
-    private AppCompatActivity activity;
+	private AppCompatActivity activity;
 
 	// Dialog
 	private AlertDialog alertDialog;
 	private ProjectConfigurationDialog dialog;
 	private final ProjectConfigurationDialogListener projectDialogConfigListener;
-
 
 	public ProjectAdapterViewModel() {
 		projectDialogConfigListener = new ProjectConfigurationDialogListener() {
