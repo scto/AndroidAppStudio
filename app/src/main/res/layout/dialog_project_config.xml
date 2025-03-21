@@ -32,7 +32,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-				android:text="@={viewModel.projectName}"
+                android:text="@={viewModel.projectName}"
                 android:id="@+id/projectName" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -40,7 +40,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:hint="@string/version_name"
+            android:hint="@string/package_name"
             android:layout_marginTop="8dp"
             android:text="Block IDLE"
             android:id="@+id/versionNameTextInputLayout">
@@ -48,30 +48,30 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-				android:text="@={viewModel.versionName}"
+                android:text="@={viewModel.packageName}"
                 android:id="@+id/versionName" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:orientation="vertical"
-			android:gravity="end"
+            android:gravity="end"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
             <Button
-			    style="@style/Widget.Material3.Button.TextButton"
+                style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-				android:onClick="@{() -> viewModel.onCreate()}"
+                android:onClick="@{() -> viewModel.onCreate()}"
                 android:text="@{viewModel.getConfigMode()}" />
 
             <Button
-				    style="@style/Widget.Material3.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cancel"
-                    android:onClick="@{() -> viewModel.onCancel()}" />
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:onClick="@{() -> viewModel.onCancel()}" />
 
         </LinearLayout>
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Block IDLE</string>
-    <string name="cancel">Cancel</string>
+	<string name="cancel">Cancel</string>
     <string name="create_a_new_project">Create a new project</string>
-    <string name="project_configuration">Project Configuration</string>
+	<string name="project_configuration">Project Configuration</string>
     <string name="project_name">Project Name</string>
-    <string name="version_name">Version Name</string>
+	<string name="version_name">Version Name</string>
     <string name="more_options">More Options</string>
 </resources>

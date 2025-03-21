@@ -20,24 +20,22 @@ package com.icst.blockidle.bean;
 import java.io.Serializable;
 
 /**
- * Represents a project with a name, version name, and version number.
- * This class implements {@link Serializable} to allow object serialization.
- * <p>
- * It is used to store and retrieve project details in the application.
- * </p>
+ * Represents a project with a name, version name, and version number. This class implements {@link
+ * Serializable} to allow object serialization.
+ *
+ * <p>It is used to store and retrieve project details in the application.
  *
  * @version 1.0
  */
 public class ProjectBean implements Serializable {
 
-	/**
-	 * Serial version UID for ensuring compatibility during serialization.
-	 */
+	/** Serial version UID for ensuring compatibility during serialization. */
 	public static final long serialVersionUID = 1L;
 
 	private String projectName;
 	private String projectVersionName;
 	private String projectVersion;
+	private String packageName;
 
 	/**
 	 * Gets the project name.
@@ -100,10 +98,37 @@ public class ProjectBean implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "ProjectBean{" +
-				"projectName='" + projectName + '\'' +
-				", projectVersionName='" + projectVersionName + '\'' +
-				", projectVersion='" + projectVersion + '\'' +
-				'}';
+		return "ProjectBean{"
+				+ "projectName='"
+				+ projectName
+				+ '\''
+				+ ", projectVersionName='"
+				+ projectVersionName
+				+ '\''
+				+ ", projectVersion='"
+				+ projectVersion
+				+ '\''
+				+ ", packageName='"
+				+ packageName
+				+ '\''
+				+ '}';
+	}
+
+	/**
+	 * Gets the project package name.
+	 *
+	 * @return the package name of the project.
+	 */
+	public String getProjectPackageName() {
+		return this.packageName;
+	}
+
+	/**
+	 * Sets the project package name.
+	 *
+	 * @param packageName the package name of the project to set.
+	 */
+	public void setProjectPackageName(String packageName) {
+		this.packageName = packageName;
 	}
 }
