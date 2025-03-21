@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="12dp"
-			android:onClick="@{() -> viewModel.onProjectSelected()}"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
             app:cardBackgroundColor="?attr/colorSurfaceVariant">
@@ -76,8 +75,10 @@
                     android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:tint="?attr/colorOnSurface"
-                    android:src="@drawable/more" />
+                    android:contentDescription="@string/more_options"
+                    android:src="@drawable/more"
+                    android:onClick="@{() -> viewModel.onProjectSelected()}"
+                    app:tint="?attr/colorOnSurface" />
 
             </RelativeLayout>
 

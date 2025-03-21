@@ -24,6 +24,7 @@ import com.icst.blockidle.listener.ProjectConfigurationDialogListener;
 import com.icst.blockidle.repository.ProjectRepository;
 import com.icst.blockidle.util.ProjectFile;
 
+import android.annotation.SuppressLint;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -32,13 +33,16 @@ import androidx.lifecycle.ViewModel;
 
 public class ProjectAdapterViewModel extends ViewModel {
 
+	//ViewModel
 	private ProjectFile projectFile;
-	private AppCompatActivity activity;
+	@SuppressLint("StaticFieldLeak")
+    private AppCompatActivity activity;
 
 	// Dialog
 	private AlertDialog alertDialog;
 	private ProjectConfigurationDialog dialog;
-	private ProjectConfigurationDialogListener projectDialogConfigListener;
+	private final ProjectConfigurationDialogListener projectDialogConfigListener;
+
 
 	public ProjectAdapterViewModel() {
 		projectDialogConfigListener = new ProjectConfigurationDialogListener() {
@@ -91,10 +95,6 @@ public class ProjectAdapterViewModel extends ViewModel {
 		dialog = new ProjectConfigurationDialog(activity, projectFile.getProjectBean(), projectDialogConfigListener);
 		alertDialog = dialog.create();
 		alertDialog.show();
-	}
-
-	public AppCompatActivity getActivity() {
-		return this.activity;
 	}
 
 	public void setActivity(AppCompatActivity activity) {

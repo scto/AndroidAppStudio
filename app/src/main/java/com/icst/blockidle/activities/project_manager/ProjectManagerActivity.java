@@ -17,15 +17,15 @@
 
 package com.icst.blockidle.activities.project_manager;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
 import com.icst.blockidle.R;
 import com.icst.blockidle.activities.project_manager.adapter.ProjectListAdapter;
 import com.icst.blockidle.databinding.ActivityProjectManagerBinding;
 import com.icst.blockidle.util.EnvironmentUtils;
-import com.icst.blockidle.util.ProjectFile;
 import com.icst.blockidle.viewmodel.ProjectManagerViewModel;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -34,7 +34,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -51,8 +50,7 @@ public class ProjectManagerActivity extends AppCompatActivity {
 		EdgeToEdge.enable(this);
 		EnvironmentUtils.init(this);
 
-		mProjectManagerViewModel = new ViewModelProvider(this)
-				.get(ProjectManagerViewModel.class);
+		mProjectManagerViewModel = new ViewModelProvider(this).get(ProjectManagerViewModel.class);
 		mProjectManagerViewModel.setActivity(this);
 
 		// Inflate and get instance of binding
@@ -66,34 +64,24 @@ public class ProjectManagerActivity extends AppCompatActivity {
 		UI();
 	}
 
+	@SuppressLint("NotifyDataSetChanged")
 	private void UI() {
 		// System Padding
-		ViewCompat.setOnApplyWindowInsetsListener(
-				binding.getRoot(),
-				(v, insets) -> {
-					Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-					v.setPadding(
-							systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-					return insets;
-				});
+		ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (v, insets) -> {
+			Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+			return insets;
+		});
 
 		// Toolbar
 		setSupportActionBar(binding.toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		binding.toolbar.setTitle(R.string.app_name);
 
-		mProjectManagerViewModel
-				.getProjects()
-				.observe(
-						this,
-						new Observer<ArrayList<ProjectFile>>() {
+		mProjectManagerViewModel.getProjects()
+				.observe(this, data -> adapter.notifyDataSetChanged());
 
-							@Override
-							public void onChanged(ArrayList<ProjectFile> data) {
-								adapter.notifyDataSetChanged();
-							}
-						});
 		// List
 		adapter = new ProjectListAdapter(mProjectManagerViewModel.getProjects().getValue());
 		binding.projectList.setLayoutManager(new LinearLayoutManager(this));
