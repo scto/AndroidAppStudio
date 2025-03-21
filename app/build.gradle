@@ -20,9 +20,15 @@ plugins {
 	id "org.jetbrains.kotlin.android"
 }
 
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(new FileInputStream(localPropertiesFile))
+}
+
 android {
 	namespace "com.icst.blockidle"
-	compileSdk 35
+	compileSdk localProperties.getProperty("compileSdk", "35").toInteger()
 
 	defaultConfig {
 		applicationId "com.icst.blockidle"
