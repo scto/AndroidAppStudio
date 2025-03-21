@@ -61,8 +61,11 @@ android {
 }
 
 dependencies {
-
-	implementation("com.airbnb.android:lottie:6.6.4")
+    // Lottie Animation
+	implementation("com.airbnb.android:lottie:6.6.4"
+	
+	// Constraint Layout
+	implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
 
 	// https://mvnrepository.com/artifact/androidx.coordinatorlayout/coordinatorlayout
 	implementation("androidx.coordinatorlayout:coordinatorlayout:1.3.0")
@@ -86,8 +89,7 @@ dependencies {
 
 	// View Editor
 	implementation project(":vieweditor")
-	implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
-
+	
 	def lifecycle_version = '2.2.0'
 
 	implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
