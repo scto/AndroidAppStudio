@@ -119,7 +119,7 @@ public class ProjectBean implements Serializable {
 	 *
 	 * @return the package name of the project.
 	 */
-	public String getPackageName() {
+	public String getProjectPackageName() {
 		return this.packageName;
 	}
 
@@ -128,7 +128,7 @@ public class ProjectBean implements Serializable {
 	 *
 	 * @param packageName the package name of the project to set.
 	 */
-	public void setPackageName(String packageName) {
+	public void setProjectPackageName(String packageName) {
 		this.packageName = packageName;
 	}
 }

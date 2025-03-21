@@ -30,7 +30,7 @@ public class ProjectConfigurationDialogViewModel extends BaseObservable {
 	private ProjectBean projectBean;
 	private ProjectConfigurationDialogListener listener;
 	private String projectName;
-	private String versionName;
+	private String packageName;
 
 	public String getConfigMode() {
 		if (projectBean == null) {
@@ -46,7 +46,7 @@ public class ProjectConfigurationDialogViewModel extends BaseObservable {
 
 	public void onCreate() {
 		ProjectBean projectBean = new ProjectBean();
-		projectBean.setProjectVersionName(versionName == null ? "null" : versionName);
+		projectBean.setProjectPackageName(packageName == null ? "null" : packageName);
 		projectBean.setProjectName(projectName == null ? "null" : projectName);
 		listener.onCreateNewProject(projectBean);
 	}
@@ -91,15 +91,15 @@ public class ProjectConfigurationDialogViewModel extends BaseObservable {
 		this.projectName = projectName;
 	}
 
-	public void setVersionName(String versionName) {
-		this.versionName = versionName;
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
 	}
 
-	public String getVersionName() {
+	public String getPackageName() {
 		if (projectBean != null) {
-			return projectBean.getProjectVersionName() == null
+			return projectBean.getProjectPackageName() == null
 					? ""
-					: projectBean.getProjectVersionName();
+					: projectBean.getProjectPackageName();
 		}
 
 		return "";

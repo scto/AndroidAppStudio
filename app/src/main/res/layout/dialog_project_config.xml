@@ -48,7 +48,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-				android:text="@={viewModel.versionName}"
+				android:text="@={viewModel.packageName}"
                 android:id="@+id/versionName" />
 
         </com.google.android.material.textfield.TextInputLayout>
