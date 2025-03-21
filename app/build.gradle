@@ -63,17 +63,21 @@ android {
 dependencies {
     // Lottie Animation
 	implementation("com.airbnb.android:lottie:$lottie")
-	
-	// Constraint Layout
-	implementation 'androidx.constraintlayout:constraintlayout:$constraintlayout'
 
-	// https://mvnrepository.com/artifact/androidx.coordinatorlayout/coordinatorlayout
+	// AndroidX
+	implementation("androidx.appcompat:appcompat:$appcompat_version")
+	implementation("androidx.core:core-splashscreen:$core_splashscreen")
+	implementation("androidx.constraintlayout:constraintlayout:$constraintlayout")
 	implementation("androidx.coordinatorlayout:coordinatorlayout:$coordinatorlayout")
 
-	implementation("androidx.appcompat:appcompat:$appcompat_version")
+	// Lifecycle (For MVVM)
+	implementation("androidx.lifecycle:lifecycle-extensions:$lifecycle_version")
+	implementation("androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version")
+	implementation("androidx.lifecycle:lifecycle-livedata:$lifecycle_version")
+	annotationProcessor("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+
+	// Material Design
 	implementation("com.google.android.material:material:$material_design_version")
-	// https://mvnrepository.com/artifact/androidx.core/core-splashscreen
-	implementation("androidx.core:core-splashscreen:$core_splashscreen")
 
 	// Beans
 	implementation project(":beans:basebeans")
@@ -89,11 +93,6 @@ dependencies {
 
 	// View Editor
 	implementation project(":vieweditor")
-
-	implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-	implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
-	implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
-	annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 }
 
 project.afterEvaluate {
