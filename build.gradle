@@ -25,11 +25,15 @@ plugins {
 
 ext {
 	appcompat_version = "1.7.0"
+	constraintlayout = "2.2.1"
+	coordinatorlayout = "1.3.0"
 	material_design_version = "1.12.0"
 	core_splashscreen = "1.0.1"
 	blankj_utilcodex_version = "1.31.1"
 	sora_editor_version = "0.22.0"
 	gson_version = "2.8.7"
+	lottie = "6.6.4"
+	lifecycle_version = "2.2.0"
 }
 
 spotless {
