@@ -108,6 +108,9 @@ public class ProjectBean implements Serializable {
 				+ ", projectVersion='"
 				+ projectVersion
 				+ '\''
+				+ ", packageName='"
+				+ packageName
+				+ '\''
 				+ '}';
 	}
 
