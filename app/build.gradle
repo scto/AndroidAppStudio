@@ -100,7 +100,6 @@ dependencies {
 
 project.afterEvaluate {
 	tasks.matching { it.name.startsWith("assemble") }.configureEach {
-		//mustRunAfter(rootProject.tasks.named("spotlessApply"))
 		finalizedBy(rootProject.tasks.named("spotlessApply"))
 	}
 }
