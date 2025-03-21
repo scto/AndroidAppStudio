@@ -49,6 +49,7 @@ public class IntroActivity extends AppCompatActivity {
 			return insets;
 		});
 
-		new Handler(getMainLooper()).postDelayed(() -> INTENTS.changeScreen(IntroActivity.this, ProjectManagerActivity.class), 2000);
+		new Handler(getMainLooper())
+				.postDelayed(() -> INTENTS.changeScreen(IntroActivity.this, ProjectManagerActivity.class), 2000);
 	}
 }
