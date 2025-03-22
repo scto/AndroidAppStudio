@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 public class INTENTS {
+	@SuppressWarnings("deprecation")
 	public static void changeScreen(Activity activity, Class<?> c) {
 		Intent intent = new Intent(activity, c);
 		activity.startActivity(intent);
