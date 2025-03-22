@@ -25,6 +25,8 @@ import com.icst.blockidle.listener.ProjectConfigurationDialogListener;
 import com.icst.blockidle.repository.ProjectRepository;
 import com.icst.blockidle.util.ProjectFile;
 
+import android.annotation.SuppressLint;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -36,6 +38,7 @@ public class ProjectManagerViewModel extends ViewModel {
 	private final MutableLiveData<ArrayList<ProjectFile>> projects;
 	private final ProjectRepository repository;
 
+	@SuppressLint("StaticFieldLeak")
 	private AppCompatActivity activity;
 
 	private AlertDialog alertDialog;
