@@ -17,16 +17,43 @@
 
 package com.icst.blockidle.util;
 
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class ProjectBeanValidator {
 
 	public static final boolean isValidPackageName(String packageName) {
-		String packageNameRegex = "^[a-zA-Z][[a-zA-Z0-9]*.//][a-zA-Z0-9]+\\.{0}$";
-		if (packageName == null) {
-			return false;
-		}
-		return Pattern.compile(packageNameRegex).matcher(packageName).matches();
-	}
-
+        String packageNameRegex = "^[a-zA-Z][a-zA-Z0-9]*(\\.[a-z][a-z0-9]*)*$";
+        
+        if (packageName == null || packageName.length() > 255) { // Android package names must be <= 255 chars
+            return false;
+        }
+    
+        if (!Pattern.compile(packageNameRegex).matcher(packageName).matches()) {
+            return false;
+        }
+    
+        // Copied from https://stackoverflow.com/questions/24265110/get-a-list-of-all-java-reserved-keywords
+        Set<String> reservedKeywords = Set.of("abstract", "assert", "boolean",
+                "break", "byte", "case", "catch", "char", "class", "const",
+                "continue", "default", "do", "double", "else", "extends", "false",
+                "final", "finally", "float", "for", "goto", "if", "implements",
+                "import", "instanceof", "int", "interface", "long", "native",
+                "new", "null", "package", "private", "protected", "public",
+                "return", "short", "static", "strictfp", "super", "switch",
+                "synchronized", "this", "throw", "throws", "transient", "true",
+                "try", "void", "volatile", "while");
+        
+        for (String segment : packageName.split("\\.")) {
+            if (reservedKeywords.contains(segment)) {
+                return false;
+            }
+            if (segment.length() > 63) { // Max segment length in a domain name
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
 }
