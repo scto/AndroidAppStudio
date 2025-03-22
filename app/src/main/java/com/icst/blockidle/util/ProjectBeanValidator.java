@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public class ProjectBeanValidator {
 
 	public static final boolean isValidPackageName(String packageName) {
-		String packageNameRegex = "^[a-zA-Z][a-zA-Z0-9\\.]*\\.{0}$";
+		String packageNameRegex = "^[a-zA-Z][[a-zA-Z0-9]*.//][a-zA-Z0-9]+\\.{0}$";
 		return Pattern.compile(packageNameRegex).matcher(packageName).matches();
 	}
 
