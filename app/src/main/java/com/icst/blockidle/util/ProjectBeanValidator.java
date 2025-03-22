@@ -23,6 +23,9 @@ public class ProjectBeanValidator {
 
 	public static final boolean isValidPackageName(String packageName) {
 		String packageNameRegex = "^[a-zA-Z][[a-zA-Z0-9]*.//][a-zA-Z0-9]+\\.{0}$";
+		if (packageName == null) {
+			return false;
+		}
 		return Pattern.compile(packageNameRegex).matcher(packageName).matches();
 	}
 
