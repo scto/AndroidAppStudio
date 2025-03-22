@@ -22,14 +22,14 @@ import java.util.regex.Pattern;
 
 public class ProjectBeanValidator {
 
-	public static final boolean isValidPackageName(String packageName) {
-		String packageNameRegex = "^[a-zA-Z][a-zA-Z0-9]*(\\.[a-z][a-z0-9]*(\\_)*[a-z0-9]*)*$";
+	public static final String PACKAGE_NAME_REGEX = "^[a-zA-Z][a-zA-Z0-9]*(\\.[a-z][a-z0-9]*(\\_)*[a-z0-9]*)*$";
 
+	public static final boolean isValidPackageName(String packageName) {
 		if (packageName == null || packageName.length() > 255) { // Android package names must be <= 255 chars
 			return false;
 		}
 
-		if (!Pattern.compile(packageNameRegex).matcher(packageName).matches()) {
+		if (!Pattern.compile(PACKAGE_NAME_REGEX).matcher(packageName).matches()) {
 			return false;
 		}
 
