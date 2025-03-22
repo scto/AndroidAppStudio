@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 public class ProjectBeanValidator {
 
 	public static final boolean isValidPackageName(String packageName) {
-		String packageNameRegex = "^[a-zA-Z][a-zA-Z0-9]*(\\.[a-z][a-z0-9]*)*$";
+		String packageNameRegex = "^[a-zA-Z][a-zA-Z0-9]*(\\.[a-z][a-z0-9]*(\\_)*[a-z0-9]*)*$";
 
 		if (packageName == null || packageName.length() > 255) { // Android package names must be <= 255 chars
 			return false;
