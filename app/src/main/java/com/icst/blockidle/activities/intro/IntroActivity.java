@@ -50,9 +50,6 @@ public class IntroActivity extends AppCompatActivity {
 		});
 
 		new Handler(getMainLooper())
-				.postDelayed(() -> {
-					INTENTS.changeScreen(IntroActivity.this, ProjectManagerActivity.class);
-					finish();
-				}, 2000);
+				.postDelayed(() -> INTENTS.changeScreen(IntroActivity.this, ProjectManagerActivity.class), 2000);
 	}
 }

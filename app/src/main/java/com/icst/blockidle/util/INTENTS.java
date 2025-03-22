@@ -25,6 +25,7 @@ public class INTENTS {
 		Intent intent = new Intent(activity, c);
 		activity.startActivity(intent);
 		activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+		activity.finish();
 	}
 
 }
