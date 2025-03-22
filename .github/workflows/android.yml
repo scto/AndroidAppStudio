@@ -34,3 +34,26 @@ jobs:
         with:
           name: output-metadata-armeabi-v7a
           path: app/build/outputs/apk/debug/output-metadata.json
+  test:
+    name: Run JUnit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+
+      - name: Allow gradlew permission
+        run: chmod +x ./gradlew
+
+      - name: Run JUnit Tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-test-reports
+          path: app/build/reports/tests/testDebugUnitTest/
