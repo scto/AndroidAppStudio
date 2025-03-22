@@ -61,6 +61,12 @@ android {
 }
 
 dependencies {
+	// Latest JUnit for unit tests (JVM)
+	implementation("junit:junit:4.13.2")
+
+	// Google Truth for better assertions (latest)
+	implementation("com.google.truth:truth:1.4.2")
+
 	// Lottie Animation
 	implementation("com.airbnb.android:lottie:$lottie")
 
