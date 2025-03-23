@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -26,12 +27,13 @@
             android:layout_width="match_parent"
             android:hint="@string/project_name"
             android:layout_marginTop="8dp"
-            android:id="@+id/projectNameTextInputLayout">
+            android:id="@+id/projectNameTextInputLayout"
+            app:errorEnabled="@{!viewModel.isValidProjectName()}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:text="@={viewModel.projectName}"
+                android:text="@={viewModel.getProjectName()}"
                 android:id="@+id/projectName" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -41,7 +43,7 @@
             android:layout_width="match_parent"
             android:textColor="?attr/colorOnSurface"
             android:textSize="12sp"
-			android:fontFamily="@font/noto_sans_thin"
+            android:fontFamily="@font/noto_sans_thin"
             android:text="@string/package_name_example" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -50,12 +52,13 @@
             android:hint="@string/package_name"
             android:layout_marginTop="8dp"
             android:text="Block IDLE"
-            android:id="@+id/packageNameTextInputLayout">
+            android:id="@+id/packageNameTextInputLayout"
+            app:errorEnabled="@{!viewModel.isValidPackageName()}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:text="@={viewModel.packageName}"
+                android:text="@={viewModel.getPackageName()}"
                 android:id="@+id/packageName" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -65,7 +68,7 @@
             android:layout_width="match_parent"
             android:textColor="?attr/colorOnSurface"
             android:textSize="12sp"
-			android:fontFamily="@font/noto_sans_thin"
+            android:fontFamily="@font/noto_sans_thin"
             android:text="@string/project_name_example" />
 
         <LinearLayout

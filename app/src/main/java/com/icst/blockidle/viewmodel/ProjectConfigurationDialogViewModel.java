@@ -17,20 +17,38 @@
 
 package com.icst.blockidle.viewmodel;
 
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.listener.ProjectConfigurationDialogListener;
+import com.icst.blockidle.util.ProjectBeanValidator;
 
-import androidx.databinding.BaseObservable;
 import androidx.databinding.BindingAdapter;
-import androidx.databinding.InverseBindingAdapter;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
-public class ProjectConfigurationDialogViewModel extends BaseObservable {
+public class ProjectConfigurationDialogViewModel extends ViewModel {
 
 	private ProjectBean projectBean;
 	private ProjectConfigurationDialogListener listener;
-	private String projectName;
-	private String packageName;
+	private final MutableLiveData<String> projectName = new MutableLiveData<>("");
+	private final MutableLiveData<Boolean> isValidProjectName = new MutableLiveData<>(true);
+	private final MutableLiveData<String> packageName = new MutableLiveData<>("");
+	private final MutableLiveData<Boolean> isValidPackageName = new MutableLiveData<>(true);
+
+	public ProjectConfigurationDialogViewModel() {
+		projectName.observeForever((p) -> {
+			validateProjectName(projectName.getValue());
+		});
+
+		packageName.observeForever((p) -> {
+			validatePackageName(packageName.getValue());
+		});
+	}
+
+	@BindingAdapter("app:errorEnabled")
+	public static void setErrorEnabled(TextInputLayout view, boolean enableError) {
+		view.setErrorEnabled(enableError);
+	}
 
 	public String getConfigMode() {
 		if (projectBean == null) {
@@ -46,8 +64,8 @@ public class ProjectConfigurationDialogViewModel extends BaseObservable {
 
 	public void onCreate() {
 		ProjectBean projectBean = new ProjectBean();
-		projectBean.setProjectPackageName(packageName == null ? "null" : packageName);
-		projectBean.setProjectName(projectName == null ? "null" : projectName);
+		projectBean.setProjectPackageName(packageName.getValue() == null ? "null" : packageName.getValue());
+		projectBean.setProjectName(projectName.getValue() == null ? "null" : projectName.getValue());
 		listener.onCreateNewProject(projectBean);
 	}
 
@@ -57,6 +75,10 @@ public class ProjectConfigurationDialogViewModel extends BaseObservable {
 
 	public void setProjectBean(ProjectBean projectBean) {
 		this.projectBean = projectBean;
+		if (projectBean != null) {
+			projectName.postValue(projectBean.getProjectName());
+			packageName.postValue(projectBean.getProjectPackageName());
+		}
 	}
 
 	public ProjectConfigurationDialogListener getListener() {
@@ -67,42 +89,29 @@ public class ProjectConfigurationDialogViewModel extends BaseObservable {
 		this.listener = listener;
 	}
 
-	@BindingAdapter("text")
-	public static void setText(TextInputEditText view, String newValue) {
-		if (!newValue.equals(view.getText().toString())) {
-			view.setText(newValue);
-		}
+	public MutableLiveData<Boolean> isValidProjectName() {
+		return isValidProjectName;
 	}
 
-	@InverseBindingAdapter(attribute = "text", event = "android:textAttrChanged")
-	public static String getText(TextInputEditText view) {
-		return view.getText().toString();
+	public MutableLiveData<Boolean> isValidPackageName() {
+		return isValidPackageName;
 	}
 
-	public String getProjectName() {
-		if (projectBean != null) {
-			return projectBean.getProjectName() == null ? "" : projectBean.getProjectName();
-		}
-
-		return "";
+	private void validateProjectName(String name) {
+		boolean isValid = ProjectBeanValidator.isValidProjectName(name);
+		isValidProjectName.postValue(isValid);
 	}
 
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+	private void validatePackageName(String name) {
+		boolean isValid = ProjectBeanValidator.isValidPackageName(name);
+		isValidPackageName.postValue(isValid);
 	}
 
-	public void setPackageName(String packageName) {
-		this.packageName = packageName;
+	public MutableLiveData<String> getProjectName() {
+		return this.projectName;
 	}
 
-	public String getPackageName() {
-		if (projectBean != null) {
-			return projectBean.getProjectPackageName() == null
-					? ""
-					: projectBean.getProjectPackageName();
-		}
-
-		return "";
+	public MutableLiveData<String> getPackageName() {
+		return this.packageName;
 	}
-
 }

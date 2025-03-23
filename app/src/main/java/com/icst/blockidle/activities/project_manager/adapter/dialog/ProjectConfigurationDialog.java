@@ -62,6 +62,8 @@ public class ProjectConfigurationDialog extends MaterialAlertDialogBuilder {
 		viewModel.setListener(listener);
 
 		binding.setViewModel(viewModel);
+		binding.packageNameTextInputLayout.setError("Invalid package name");
+		binding.projectNameTextInputLayout.setError("Invalid project name");
 		setView(binding.getRoot());
 	}
 }
