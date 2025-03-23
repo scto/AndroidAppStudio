@@ -56,4 +56,8 @@ public class ProjectBeanValidator {
 		return true;
 	}
 
+	public static boolean isValidProjectName(String projectName) {
+		return true;
+	}
+
 }
