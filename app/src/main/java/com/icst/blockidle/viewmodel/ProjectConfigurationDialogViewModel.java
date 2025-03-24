@@ -31,19 +31,7 @@ public class ProjectConfigurationDialogViewModel extends ViewModel {
 	private ProjectBean projectBean;
 	private ProjectConfigurationDialogListener listener;
 	private final MutableLiveData<String> projectName = new MutableLiveData<>("");
-	private final MutableLiveData<Boolean> isValidProjectName = new MutableLiveData<>(true);
 	private final MutableLiveData<String> packageName = new MutableLiveData<>("");
-	private final MutableLiveData<Boolean> isValidPackageName = new MutableLiveData<>(true);
-
-	public ProjectConfigurationDialogViewModel() {
-		projectName.observeForever((p) -> {
-			validateProjectName(projectName.getValue());
-		});
-
-		packageName.observeForever((p) -> {
-			validatePackageName(packageName.getValue());
-		});
-	}
 
 	@BindingAdapter("app:errorEnabled")
 	public static void setErrorEnabled(TextInputLayout view, boolean enableError) {
@@ -63,10 +51,25 @@ public class ProjectConfigurationDialogViewModel extends ViewModel {
 	}
 
 	public void onCreate() {
-		ProjectBean projectBean = new ProjectBean();
-		projectBean.setProjectPackageName(packageName.getValue() == null ? "null" : packageName.getValue());
-		projectBean.setProjectName(projectName.getValue() == null ? "null" : projectName.getValue());
-		listener.onCreateNewProject(projectBean);
+		boolean isValidPackageName = ProjectBeanValidator.isValidPackageName(packageName.getValue());
+		boolean isValidProjectName = ProjectBeanValidator.isValidProjectName(projectName.getValue());
+
+		if (isValidProjectName && isValidPackageName) {
+			if (projectBean == null) {
+				ProjectBean projectBean = new ProjectBean();
+				projectBean.setProjectPackageName(packageName.getValue() == null ? "null" : packageName.getValue());
+				projectBean.setProjectName(projectName.getValue() == null ? "null" : projectName.getValue());
+				listener.onCreateNewProject(projectBean);
+			} else {
+				projectBean.setProjectPackageName(packageName.getValue() == null ? "null" : packageName.getValue());
+				projectBean.setProjectName(projectName.getValue() == null ? "null" : projectName.getValue());
+				listener.onProjectConfigChange(projectBean);
+			}
+		} else {
+			projectName.postValue(projectName.getValue());
+			packageName.postValue(packageName.getValue());
+		}
+
 	}
 
 	public ProjectBean getProjectBean() {
@@ -87,24 +90,6 @@ public class ProjectConfigurationDialogViewModel extends ViewModel {
 
 	public void setListener(ProjectConfigurationDialogListener listener) {
 		this.listener = listener;
-	}
-
-	public MutableLiveData<Boolean> isValidProjectName() {
-		return isValidProjectName;
-	}
-
-	public MutableLiveData<Boolean> isValidPackageName() {
-		return isValidPackageName;
-	}
-
-	private void validateProjectName(String name) {
-		boolean isValid = ProjectBeanValidator.isValidProjectName(name);
-		isValidProjectName.postValue(isValid);
-	}
-
-	private void validatePackageName(String name) {
-		boolean isValid = ProjectBeanValidator.isValidPackageName(name);
-		isValidPackageName.postValue(isValid);
 	}
 
 	public MutableLiveData<String> getProjectName() {

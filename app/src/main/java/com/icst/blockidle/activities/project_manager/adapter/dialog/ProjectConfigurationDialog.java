@@ -21,6 +21,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.databinding.DialogProjectConfigBinding;
 import com.icst.blockidle.listener.ProjectConfigurationDialogListener;
+import com.icst.blockidle.util.ProjectBeanValidator;
 import com.icst.blockidle.viewmodel.ProjectConfigurationDialogViewModel;
 
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ public class ProjectConfigurationDialog extends MaterialAlertDialogBuilder {
 	private ProjectConfigurationDialogListener listener;
 	private DialogProjectConfigBinding binding;
 	private AppCompatActivity activity;
+	private ProjectConfigurationDialogViewModel viewModel;
 
 	public ProjectConfigurationDialog(
 			AppCompatActivity activity,
@@ -57,13 +59,31 @@ public class ProjectConfigurationDialog extends MaterialAlertDialogBuilder {
 	private void init() {
 		binding = DialogProjectConfigBinding.inflate(LayoutInflater.from(getContext()));
 
-		ProjectConfigurationDialogViewModel viewModel = new ProjectConfigurationDialogViewModel();
+		viewModel = new ProjectConfigurationDialogViewModel();
 		viewModel.setProjectBean(projectBean);
 		viewModel.setListener(listener);
 
 		binding.setViewModel(viewModel);
-		binding.packageNameTextInputLayout.setError("Invalid package name");
-		binding.projectNameTextInputLayout.setError("Invalid project name");
 		setView(binding.getRoot());
+
+		viewModel.getPackageName().observe(activity, packageName -> {
+			boolean isValidPackageName = ProjectBeanValidator.isValidPackageName(packageName);
+
+			binding.packageNameTextInputLayout.setErrorEnabled(!isValidPackageName);
+			if (!isValidPackageName) {
+				binding.packageNameTextInputLayout.setError("Invalid package name");
+			}
+		});
+
+		viewModel.getProjectName().observe(activity, projectName -> {
+			boolean isValidProjectName = ProjectBeanValidator.isValidProjectName(projectName);
+			binding.projectNameTextInputLayout.setErrorEnabled(!isValidProjectName);
+			if (!isValidProjectName) {
+				binding.projectNameTextInputLayout.setError("Invalid project name");
+			}
+		});
+
+		binding.packageNameTextInputLayout.setErrorEnabled(false);
+		binding.projectNameTextInputLayout.setErrorEnabled(false);
 	}
 }
