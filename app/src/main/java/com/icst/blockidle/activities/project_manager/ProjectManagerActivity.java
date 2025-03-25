@@ -27,6 +27,7 @@ import com.icst.blockidle.viewmodel.ProjectManagerViewModel;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -80,12 +81,26 @@ public class ProjectManagerActivity extends AppCompatActivity {
 		binding.toolbar.setTitle(R.string.app_name);
 
 		mProjectManagerViewModel.getProjects()
-				.observe(this, data -> adapter.notifyDataSetChanged());
+				.observe(this, data -> {
+					adapter.notifyDataSetChanged();
+					projectUI();
+				});
 
 		// List
 		adapter = new ProjectListAdapter(mProjectManagerViewModel.getProjects().getValue());
 		binding.projectList.setLayoutManager(new LinearLayoutManager(this));
 		binding.projectList.setAdapter(adapter);
+		projectUI();
+	}
+
+	private void projectUI() {
+		if (mProjectManagerViewModel.getProjects().getValue().size() == 0) {
+			binding.projectList.setVisibility(View.GONE);
+			binding.noProjectsYet.setVisibility(View.VISIBLE);
+		} else {
+			binding.projectList.setVisibility(View.VISIBLE);
+			binding.noProjectsYet.setVisibility(View.GONE);
+		}
 	}
 
 	@Override

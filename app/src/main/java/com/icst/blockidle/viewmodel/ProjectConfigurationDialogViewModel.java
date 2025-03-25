@@ -17,12 +17,10 @@
 
 package com.icst.blockidle.viewmodel;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.listener.ProjectConfigurationDialogListener;
 import com.icst.blockidle.util.ProjectBeanValidator;
 
-import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -32,11 +30,6 @@ public class ProjectConfigurationDialogViewModel extends ViewModel {
 	private ProjectConfigurationDialogListener listener;
 	private final MutableLiveData<String> projectName = new MutableLiveData<>("");
 	private final MutableLiveData<String> packageName = new MutableLiveData<>("");
-
-	@BindingAdapter("app:errorEnabled")
-	public static void setErrorEnabled(TextInputLayout view, boolean enableError) {
-		view.setErrorEnabled(enableError);
-	}
 
 	public String getConfigMode() {
 		if (projectBean == null) {
