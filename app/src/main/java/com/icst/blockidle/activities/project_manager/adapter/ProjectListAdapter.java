@@ -24,7 +24,6 @@ import com.icst.blockidle.util.ProjectFile;
 import com.icst.blockidle.viewmodel.ProjectAdapterViewModel;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -34,7 +33,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.ViewHolder> {
 
 	private final ArrayList<ProjectFile> data;
-	private ProjectListItemBinding binding;
 
 	public ProjectListAdapter(ArrayList<ProjectFile> data) {
 		this.data = data;
@@ -42,16 +40,25 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 
 	@NonNull @Override
 	public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		binding = ProjectListItemBinding.inflate(LayoutInflater.from(parent.getContext()));
-		return new ViewHolder(binding.getRoot());
+		ProjectListItemBinding binding = ProjectListItemBinding.inflate(LayoutInflater.from(parent.getContext()));
+		return new ViewHolder(binding);
 	}
 
 	@Override
-	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+	public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 		ProjectAdapterViewModel mProjectAdapterViewModel = new ProjectAdapterViewModel();
 		mProjectAdapterViewModel.setProjectFile(data.get(position));
-		mProjectAdapterViewModel.setActivity(AppCompatActivity.class.cast(binding.getRoot().getContext()));
-		binding.setViewModel(mProjectAdapterViewModel);
+		mProjectAdapterViewModel.setActivity(AppCompatActivity.class.cast(holder.binding.getRoot().getContext()));
+		holder.binding.setViewModel(mProjectAdapterViewModel);
+		mProjectAdapterViewModel.getPackageName()
+				.observe(AppCompatActivity.class.cast(holder.binding.getRoot().getContext()), packageName -> {
+					holder.binding.subtitleTextView.setText(packageName);
+				});
+		mProjectAdapterViewModel.getProjectName()
+				.observe(AppCompatActivity.class.cast(holder.binding.getRoot().getContext()), projectName -> {
+					holder.binding.titleTextView.setText(projectName);
+					holder.binding.letterImageView.setLetter(projectName.charAt(0));
+				});
 	}
 
 	@Override
@@ -60,8 +67,11 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 	}
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
-		public ViewHolder(@NonNull View binding) {
-			super(binding);
+		public ProjectListItemBinding binding;
+
+		public ViewHolder(@NonNull ProjectListItemBinding binding) {
+			super(binding.getRoot());
+			this.binding = binding;
 		}
 	}
 }

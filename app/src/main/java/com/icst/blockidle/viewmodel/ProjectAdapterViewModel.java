@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class ProjectAdapterViewModel extends ViewModel {
@@ -37,6 +38,9 @@ public class ProjectAdapterViewModel extends ViewModel {
 	private ProjectFile projectFile;
 	@SuppressLint("StaticFieldLeak")
 	private AppCompatActivity activity;
+
+	private final MutableLiveData<String> projectName = new MutableLiveData<>("Null");
+	private final MutableLiveData<String> packageName = new MutableLiveData<>("Null");
 
 	// Dialog
 	private AlertDialog alertDialog;
@@ -57,6 +61,8 @@ public class ProjectAdapterViewModel extends ViewModel {
 				projectFile.setProjectBean(projectBean);
 				try {
 					ProjectRepository.getInstance().updateProject(projectFile);
+					projectName.postValue(projectBean.getProjectName());
+					packageName.postValue(projectBean.getProjectPackageName());
 					alertDialog.dismiss();
 				} catch (ProjectUpdateException e) {
 					Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -73,18 +79,20 @@ public class ProjectAdapterViewModel extends ViewModel {
 
 	public void setProjectFile(ProjectFile projectFile) {
 		this.projectFile = projectFile;
+		projectName.postValue(projectFile.getProjectBean().getProjectName());
+		packageName.postValue(projectFile.getProjectBean().getProjectPackageName());
 	}
 
-	public String getProjectName() {
-		return projectFile.getProjectBean().getProjectName();
+	public MutableLiveData<String> getProjectName() {
+		return projectName;
 	}
 
-	public String getProjectPackageName() {
-		return projectFile.getProjectBean().getProjectPackageName();
+	public MutableLiveData<String> getPackageName() {
+		return packageName;
 	}
 
 	public String getProjectNameFirstLetter() {
-		return String.valueOf(getProjectName().charAt(0));
+		return String.valueOf(getProjectName().getValue().charAt(0));
 	}
 
 	public void onProjectSelected() {
