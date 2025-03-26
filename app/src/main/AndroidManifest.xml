@@ -20,9 +20,11 @@
         <activity
             android:name=".activities.project_manager.ProjectManagerActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.SplashScreen">
+            android:theme="@style/AppTheme.SplashScreen" />
 
-        </activity>
+         <activity
+            android:name=".activities.project_editor.ProjectEditorActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

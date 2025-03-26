@@ -17,6 +17,7 @@
 
 package com.icst.blockidle.viewmodel;
 
+import com.icst.blockidle.activities.project_editor.ProjectEditorActivity;
 import com.icst.blockidle.activities.project_manager.adapter.dialog.ProjectConfigurationDialog;
 import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.exception.ProjectUpdateException;
@@ -25,6 +26,7 @@ import com.icst.blockidle.repository.ProjectRepository;
 import com.icst.blockidle.util.ProjectFile;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -95,13 +97,18 @@ public class ProjectAdapterViewModel extends ViewModel {
 		return String.valueOf(getProjectName().getValue().charAt(0));
 	}
 
-	public void onProjectSelected() {
+	public void onProjectConfigSelected() {
 		if (alertDialog != null) {
 			alertDialog.dismiss();
 		}
 		dialog = new ProjectConfigurationDialog(activity, projectFile.getProjectBean(), projectDialogConfigListener);
 		alertDialog = dialog.create();
 		alertDialog.show();
+	}
+
+	public void onProjectSelected() {
+		Intent intent = new Intent(activity, ProjectEditorActivity.class);
+		activity.startActivity(intent);
 	}
 
 	public void setActivity(AppCompatActivity activity) {
