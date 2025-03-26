@@ -17,14 +17,13 @@
 
 package com.icst.blockidle.activities.project_editor;
 
-import android.content.Intent;
+import com.icst.blockidle.R;
 import com.icst.blockidle.databinding.ActivityProjectEditorBinding;
 
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import com.icst.blockidle.R;
 
 public class ProjectEditorActivity extends AppCompatActivity {
 
@@ -37,12 +36,12 @@ public class ProjectEditorActivity extends AppCompatActivity {
 
 		binding = ActivityProjectEditorBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
-		
+
 		setSupportActionBar(binding.toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		binding.toolbar.setTitle(R.string.app_name);
-		
+
 	}
 
 	@Override
