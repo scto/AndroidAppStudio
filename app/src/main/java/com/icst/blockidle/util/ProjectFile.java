@@ -37,7 +37,7 @@ public class ProjectFile implements Parcelable {
 
 	protected ProjectFile(Parcel in) {
 		this.file = new File(in.readString());
-		this.projectBean = in.readSerializable(ProjectBean.class.getClassLoader(), ProjectBean.class);
+		this.projectBean = (ProjectBean) in.readSerializable();
 	}
 
 	public File getFile() {

@@ -17,8 +17,8 @@
 
 package com.icst.blockidle.activities.project_editor;
 
-import com.icst.blockidle.R;
 import com.icst.blockidle.databinding.ActivityProjectEditorBinding;
+import com.icst.blockidle.util.ProjectFile;
 
 import android.os.Bundle;
 
@@ -37,11 +37,14 @@ public class ProjectEditorActivity extends AppCompatActivity {
 		binding = ActivityProjectEditorBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
 
+		ProjectFile file = ProjectFile.class.cast(getIntent().getParcelableExtra("projectFile"));
+
+		binding.toolbar.setTitle(file.getProjectBean().getProjectName());
+		binding.toolbar.setSubtitle(file.getProjectBean().getProjectPackageName());
+
 		setSupportActionBar(binding.toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
-		binding.toolbar.setTitle(R.string.app_name);
-
 	}
 
 	@Override
@@ -49,5 +52,4 @@ public class ProjectEditorActivity extends AppCompatActivity {
 		super.onDestroy();
 		binding = null;
 	}
-
 }

@@ -108,6 +108,7 @@ public class ProjectAdapterViewModel extends ViewModel {
 
 	public void onProjectSelected() {
 		Intent intent = new Intent(activity, ProjectEditorActivity.class);
+		intent.putExtra("projectFile", projectFile);
 		activity.startActivity(intent);
 	}
 
