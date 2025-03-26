@@ -123,6 +123,7 @@ public final class SerializationUtils {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static <T> T deserialize(File path, Class<T> objectClass) {
 		if (!path.exists())
 			return null;
