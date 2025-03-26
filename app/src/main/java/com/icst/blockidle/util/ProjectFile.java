@@ -21,8 +21,11 @@ import java.io.File;
 
 import com.icst.blockidle.bean.ProjectBean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /* stores ProjectBan file along with file */
-public class ProjectFile {
+public class ProjectFile implements Parcelable {
 
 	private File file;
 	private ProjectBean projectBean;
@@ -30,6 +33,11 @@ public class ProjectFile {
 	public ProjectFile(File file, ProjectBean projectBean) {
 		this.file = file;
 		this.projectBean = projectBean;
+	}
+
+	protected ProjectFile(Parcel in) {
+		this.file = new File(in.readString());
+		this.projectBean = in.readSerializable(ProjectBean.class.getClassLoader(), ProjectBean.class);
 	}
 
 	public File getFile() {
@@ -47,4 +55,27 @@ public class ProjectFile {
 	public void setProjectBean(ProjectBean projectBean) {
 		this.projectBean = projectBean;
 	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(file.getAbsolutePath());
+		dest.writeSerializable(projectBean);
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	public static final Creator<ProjectFile> CREATOR = new Creator<ProjectFile>() {
+		@Override
+		public ProjectFile createFromParcel(Parcel in) {
+			return new ProjectFile(in);
+		}
+
+		@Override
+		public ProjectFile[] newArray(int size) {
+			return new ProjectFile[size];
+		}
+	};
 }
