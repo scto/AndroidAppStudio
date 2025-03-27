@@ -17,10 +17,10 @@
 
 package com.icst.blockidle.activities.project_editor;
 
-import android.os.Build;
 import com.icst.blockidle.databinding.ActivityProjectEditorBinding;
 import com.icst.blockidle.util.ProjectFile;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ProjectEditorActivity extends AppCompatActivity {
 
 	private ActivityProjectEditorBinding binding;
+	private ProjectFile projectFile;
 
 	@Override
 	@SuppressWarnings("deprecation")
@@ -39,15 +40,14 @@ public class ProjectEditorActivity extends AppCompatActivity {
 		binding = ActivityProjectEditorBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
 
-		ProjectFile file;
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-			file = getIntent().getParcelableExtra("projectFile",ProjectFile.class);
+			projectFile = getIntent().getParcelableExtra("projectFile", ProjectFile.class);
 		} else {
-			file = ProjectFile.class.cast(getIntent().getParcelableExtra("projectFile"));
+			projectFile = ProjectFile.class.cast(getIntent().getParcelableExtra("projectFile"));
 		}
 
-		binding.toolbar.setTitle(file.getProjectBean().getProjectName());
-		binding.toolbar.setSubtitle(file.getProjectBean().getProjectPackageName());
+		binding.toolbar.setTitle(projectFile.getProjectBean().getProjectName());
+		binding.toolbar.setSubtitle(projectFile.getProjectBean().getProjectPackageName());
 
 		setSupportActionBar(binding.toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
