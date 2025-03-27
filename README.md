@@ -1,9 +1,11 @@
 # BlockIDLE
 
+![logo](https://raw.githubusercontent.com/Innovative-CST/BlockIDLE/refs/heads/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+
 Welcome! This project aims to building Android applications using a drag-and-drop interface.
 Currently this app is under development
 
-# Discord
+## Discord
 [![Join our discord](https://invidget.switchblade.xyz/RM5qaZs4kd)](https://discord.gg/RM5qaZs4kd)
 
 ## Contribution Guidelines
@@ -18,5 +20,5 @@ To contribute to Android App Studio, follow these steps:
 
 Please make sure to run `spotlessApply` to format the entire project.
 
-# Special Thanks to
+## Special Thanks to
 [rooki_eplay](https://www.instagram.com/rooki_eplay) for UI designing on entire project.
