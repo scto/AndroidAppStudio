@@ -1,7 +1,5 @@
-# BlockIDLE
-
 ![logo](https://raw.githubusercontent.com/Innovative-CST/BlockIDLE/refs/heads/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
-
+# BlockIDLE
 Welcome! This project aims to building Android applications using a drag-and-drop interface.
 Currently this app is under development
 
