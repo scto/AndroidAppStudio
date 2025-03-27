@@ -194,7 +194,7 @@ ArrayList<XmlBean> children = new ArrayList<>();
 children.add(child);
 root.setChildren(children);
 
-System.out.println(root.getCode(""));
+System.out.println(root.getCode());
 ```
 
 ### Output  
