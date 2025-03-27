@@ -23,6 +23,8 @@ import java.util.ArrayList;
 
 import com.icst.blockidle.bean.ProjectBean;
 import com.icst.blockidle.exception.ProjectUpdateException;
+import com.icst.blockidle.listener.DeserializationListener;
+import com.icst.blockidle.listener.SerializationListener;
 import com.icst.blockidle.util.EnvironmentUtils;
 import com.icst.blockidle.util.ProjectFile;
 import com.icst.blockidle.util.SerializationUtils;
@@ -59,7 +61,7 @@ public class ProjectRepository {
 
 			SerializationUtils.deserialize(
 					projectBean,
-					new SerializationUtils.DeserializationListener() {
+					new DeserializationListener() {
 
 						@Override
 						public void onDeserializationSucess(Serializable object) {
@@ -95,7 +97,7 @@ public class ProjectRepository {
 		SerializationUtils.serialize(
 				project,
 				new File(newProjectDir, EnvironmentUtils.PROJECT_BEAN_FILE),
-				new SerializationUtils.SerializationListener() {
+				new SerializationListener() {
 
 					@Override
 					public void onSerializationSucess() {
@@ -121,7 +123,7 @@ public class ProjectRepository {
 		SerializationUtils.serialize(
 				projectFile.getProjectBean(),
 				projectBeanFile,
-				new SerializationUtils.SerializationListener() {
+				new SerializationListener() {
 
 					@Override
 					public void onSerializationSucess() {

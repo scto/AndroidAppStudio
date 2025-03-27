@@ -24,6 +24,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import com.icst.blockidle.listener.DeserializationListener;
+import com.icst.blockidle.listener.SerializationListener;
+
 public final class SerializationUtils {
 
 	/*
@@ -44,12 +47,6 @@ public final class SerializationUtils {
 		} catch (Exception e) {
 			listener.onSerializationFailed(e);
 		}
-	}
-
-	public interface SerializationListener {
-		void onSerializationSucess();
-
-		void onSerializationFailed(Exception exception);
 	}
 
 	/*
@@ -144,12 +141,6 @@ public final class SerializationUtils {
 		} catch (Exception e) {
 			return null;
 		}
-	}
-
-	public interface DeserializationListener {
-		void onDeserializationSucess(Serializable object);
-
-		void onDeserializationFailed(int errorCode, Exception e);
 	}
 
 }
