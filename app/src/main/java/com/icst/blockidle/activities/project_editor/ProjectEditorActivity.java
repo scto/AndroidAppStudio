@@ -17,6 +17,7 @@
 
 package com.icst.blockidle.activities.project_editor;
 
+import android.os.Build;
 import com.icst.blockidle.databinding.ActivityProjectEditorBinding;
 import com.icst.blockidle.util.ProjectFile;
 
@@ -30,6 +31,7 @@ public class ProjectEditorActivity extends AppCompatActivity {
 	private ActivityProjectEditorBinding binding;
 
 	@Override
+	@SuppressWarnings("deprecation")
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		EdgeToEdge.enable(this);
@@ -37,7 +39,12 @@ public class ProjectEditorActivity extends AppCompatActivity {
 		binding = ActivityProjectEditorBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
 
-		ProjectFile file = ProjectFile.class.cast(getIntent().getParcelableExtra("projectFile"));
+		ProjectFile file;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+			file = getIntent().getParcelableExtra("projectFile",ProjectFile.class);
+		} else {
+			file = ProjectFile.class.cast(getIntent().getParcelableExtra("projectFile"));
+		}
 
 		binding.toolbar.setTitle(file.getProjectBean().getProjectName());
 		binding.toolbar.setSubtitle(file.getProjectBean().getProjectPackageName());

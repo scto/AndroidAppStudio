@@ -21,6 +21,7 @@ import java.io.File;
 
 import com.icst.blockidle.bean.ProjectBean;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -35,9 +36,15 @@ public class ProjectFile implements Parcelable {
 		this.projectBean = projectBean;
 	}
 
+	@SuppressWarnings("deprecation")
 	protected ProjectFile(Parcel in) {
 		this.file = new File(in.readString());
-		this.projectBean = (ProjectBean) in.readSerializable();
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+			this.projectBean = in.readSerializable(ProjectBean.class.getClassLoader(), ProjectBean.class);
+		} else {
+			this.projectBean = (ProjectBean) in.readSerializable();
+		}
 	}
 
 	public File getFile() {
