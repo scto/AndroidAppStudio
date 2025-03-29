@@ -19,7 +19,6 @@ package com.icst.blockidle.activities.project_editor;
 
 import com.icst.blockidle.activities.project_editor.viewholder.FileTreeViewHolder;
 import com.icst.blockidle.databinding.ActivityProjectEditorBinding;
-import com.icst.blockidle.exception.IDLEFileAlreadyExistsException;
 import com.icst.blockidle.util.IDLEFolder;
 import com.icst.blockidle.util.ProjectFile;
 import com.unnamed.b.atv.model.TreeNode;
