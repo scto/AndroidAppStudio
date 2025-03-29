@@ -17,8 +17,14 @@
 
 package com.icst.blockidle.activities.project_editor;
 
+import com.icst.blockidle.activities.project_editor.viewholder.FileTreeViewHolder;
 import com.icst.blockidle.databinding.ActivityProjectEditorBinding;
+import com.icst.blockidle.exception.IDLEFileAlreadyExistsException;
+import com.icst.blockidle.util.IDLEFolder;
 import com.icst.blockidle.util.ProjectFile;
+import com.unnamed.b.atv.model.TreeNode;
+import com.unnamed.b.atv.view.AndroidTreeView;
+import com.unnamed.b.atv.view.TreeNodeWrapperView;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +36,7 @@ public class ProjectEditorActivity extends AppCompatActivity {
 
 	private ActivityProjectEditorBinding binding;
 	private ProjectFile projectFile;
+	private IDLEFolder rootFolder;
 
 	@Override
 	@SuppressWarnings("deprecation")
@@ -46,12 +53,27 @@ public class ProjectEditorActivity extends AppCompatActivity {
 			projectFile = ProjectFile.class.cast(getIntent().getParcelableExtra("projectFile"));
 		}
 
+		rootFolder = IDLEFolder.getProjectIDLEFolder(projectFile);
+
 		binding.toolbar.setTitle(projectFile.getProjectBean().getProjectName());
 		binding.toolbar.setSubtitle(projectFile.getProjectBean().getProjectPackageName());
 
 		setSupportActionBar(binding.toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
+
+		TreeNode root = TreeNode.root();
+		TreeNode child = new TreeNode(rootFolder);
+		child.setViewHolder(new FileTreeViewHolder(this));
+
+		root.addChild(child);
+
+		AndroidTreeView tView = new AndroidTreeView(this, root);
+		tView.setDefaultAnimation(true);
+		TreeNodeWrapperView treeWrapper = new TreeNodeWrapperView(this, com.unnamed.b.atv.R.style.TreeNodeStyle);
+		treeWrapper.getNodeContainer().addView(tView.getView());
+
+		binding.fileTreeContainer.addView(treeWrapper);
 	}
 
 	@Override

@@ -19,11 +19,15 @@ package com.icst.blockidle.util;
 
 import java.io.File;
 
-public abstract class IDLEFile {
+public class IDLEFile {
 
 	protected File file;
 
 	public IDLEFile(File file) {
 		this.file = file;
+	}
+
+	public String getFileName() {
+		return file.getName();
 	}
 }

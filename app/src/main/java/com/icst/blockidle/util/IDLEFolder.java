@@ -26,29 +26,38 @@ import com.icst.blockidle.bean.IDLEFolderBean;
 import com.icst.blockidle.exception.IDLEFileAlreadyExistsException;
 import com.icst.blockidle.listener.SerializationListener;
 
-public class IDLEFolder {
+public class IDLEFolder extends IDLEFile {
 
 	// Contanst for contents of folder
 	private static final String CONTENTS = "data";
 	private static final String IDLEFOLDER = "IDLEFolder";
 	private static final String IDLEFILE = "IDLEFile";
 
-	private File file;
+	private IDLEFileBean fileBean;
 
 	public IDLEFolder(File file) {
-		this.file = file;
+		super(file);
+		fileBean = SerializationUtils.deserialize(new File(file, IDLEFILE), IDLEFolderBean.class);
+		if (fileBean == null) {
+			fileBean = new IDLEFolderBean(file.getName());
+		}
 	}
 
-	public static IDLEFolder getProjectIDLEFolder(ProjectFile file) {
-		return new IDLEFolder(file.getFile());
+	public IDLEFolder(File file, IDLEFolderBean fileBean) {
+		super(file);
+		this.fileBean = fileBean;
 	}
 
-	public List<IDLEFileBean> getFiles() {
+	public static IDLEFolder getProjectIDLEFolder(ProjectFile projectFile) {
+		return new IDLEFolder(projectFile.getFile());
+	}
+
+	public List<IDLEFile> getFiles() {
 		File contents = new File(file, CONTENTS);
 		if (!contents.exists()) {
-			return new ArrayList<IDLEFileBean>();
+			return new ArrayList<IDLEFile>();
 		}
-		ArrayList<IDLEFileBean> filesList = new ArrayList<IDLEFileBean>();
+		ArrayList<IDLEFile> filesList = new ArrayList<IDLEFile>();
 
 		for (File file : contents.listFiles()) {
 
@@ -66,7 +75,7 @@ public class IDLEFolder {
 					continue;
 				}
 
-				filesList.add(idleFolderBean);
+				filesList.add(new IDLEFolder(file));
 
 			} else if (new File(file, IDLEFILE).exists()) {
 				File idleFile = new File(file, IDLEFILE);
@@ -77,7 +86,7 @@ public class IDLEFolder {
 					continue;
 				}
 
-				filesList.add(idleFileBean);
+				filesList.add(new IDLEFile(file));
 			}
 		}
 

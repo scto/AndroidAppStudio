@@ -53,3 +53,6 @@ include(":vieweditor")
 
 // Code Editor
 include(":editor")
+
+// TreeView
+include(":treeview")
