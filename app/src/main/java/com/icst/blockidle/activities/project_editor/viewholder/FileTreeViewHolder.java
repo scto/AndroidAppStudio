@@ -80,7 +80,7 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<IDLEFile> {
 				isExpanded ? R.drawable.menu_down_outline : R.drawable.menu_right_outline);
 	}
 
-	public LinearLayout applyPadding(final TreeNode node, final int padding) {
+	private LinearLayout applyPadding(final TreeNode node, final int padding) {
 		binding.getRoot()
 				.setPaddingRelative(
 						binding.getRoot().getPaddingLeft() + (padding * (node.getLevel() - 1)),
