@@ -35,7 +35,7 @@ import androidx.transition.TransitionManager;
 public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<IDLEFile> {
 
 	private ViewHolderFileTreeBinding binding;
-	private AppCompatActivity activity;
+	private final AppCompatActivity activity;
 
 	public FileTreeViewHolder(AppCompatActivity activity) {
 		super(activity);
