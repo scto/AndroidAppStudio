@@ -19,6 +19,7 @@ package com.icst.blockidle.activities.project_editor;
 
 import com.icst.blockidle.activities.project_editor.viewholder.FileTreeViewHolder;
 import com.icst.blockidle.databinding.ActivityProjectEditorBinding;
+import com.icst.blockidle.exception.IDLEFileAlreadyExistsException;
 import com.icst.blockidle.util.IDLEFolder;
 import com.icst.blockidle.util.ProjectFile;
 import com.unnamed.b.atv.model.TreeNode;
@@ -36,6 +37,9 @@ public class ProjectEditorActivity extends AppCompatActivity {
 	private ActivityProjectEditorBinding binding;
 	private ProjectFile projectFile;
 	private IDLEFolder rootFolder;
+	private IDLEFolder sourceDir;
+	private IDLEFolder javaDir;
+	private IDLEFolder resDir;
 
 	@Override
 	@SuppressWarnings("deprecation")
@@ -43,16 +47,21 @@ public class ProjectEditorActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		EdgeToEdge.enable(this);
 
-		binding = ActivityProjectEditorBinding.inflate(getLayoutInflater());
-		setContentView(binding.getRoot());
-
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 			projectFile = getIntent().getParcelableExtra("projectFile", ProjectFile.class);
 		} else {
 			projectFile = ProjectFile.class.cast(getIntent().getParcelableExtra("projectFile"));
 		}
 
+        // Create project structure folders and store their reference for creating files in them.
+        // TODO: Move this folder creation task during project creation and only store reference here.
 		rootFolder = IDLEFolder.getProjectIDLEFolder(projectFile);
+		sourceDir = createIDLESourceDir();
+		javaDir = createIDLEJavaDir();
+		resDir = createIDLEResDir();
+
+		binding = ActivityProjectEditorBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
 
 		binding.toolbar.setTitle(projectFile.getProjectBean().getProjectName());
 		binding.toolbar.setSubtitle(projectFile.getProjectBean().getProjectPackageName());
@@ -79,5 +88,29 @@ public class ProjectEditorActivity extends AppCompatActivity {
 	protected void onDestroy() {
 		super.onDestroy();
 		binding = null;
+	}
+
+	private IDLEFolder createIDLESourceDir() {
+		try {
+			return rootFolder.createFolder("src");
+		} catch (IDLEFileAlreadyExistsException err) {
+			return new IDLEFolder(rootFolder, "src");
+		}
+	}
+
+	private IDLEFolder createIDLEJavaDir() {
+		try {
+			return sourceDir.createFolder("java");
+		} catch (IDLEFileAlreadyExistsException err) {
+			return new IDLEFolder(sourceDir, "java");
+		}
+	}
+
+	private IDLEFolder createIDLEResDir() {
+		try {
+			return sourceDir.createFolder("res");
+		} catch (IDLEFileAlreadyExistsException err) {
+			return new IDLEFolder(sourceDir, "res");
+		}
 	}
 }

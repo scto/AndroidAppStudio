@@ -48,6 +48,14 @@ public class IDLEFolder extends IDLEFile {
 		this.fileBean = fileBean;
 	}
 
+	public IDLEFolder(IDLEFolder folder, String subFolder) {
+		super(new File(new File(folder.file, CONTENTS), subFolder));
+		fileBean = SerializationUtils.deserialize(new File(file, IDLEFILE), IDLEFolderBean.class);
+		if (fileBean == null) {
+			fileBean = new IDLEFolderBean(file.getName());
+		}
+	}
+
 	public static IDLEFolder getProjectIDLEFolder(ProjectFile projectFile) {
 		return new IDLEFolder(projectFile.getFile());
 	}
