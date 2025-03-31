@@ -19,7 +19,13 @@ package com.icst.blockidle.util;
 
 import java.io.File;
 
+import com.icst.blockidle.bean.IDLEFileBean;
+import com.icst.blockidle.bean.IDLEFolderBean;
+
 public class IDLEFile {
+
+	private static final String IDLEFOLDER = "IDLEFolder";
+	private static final String IDLEFILE = "IDLEFile";
 
 	protected File file;
 
@@ -29,5 +35,23 @@ public class IDLEFile {
 
 	public String getFileName() {
 		return file.getName();
+	}
+
+	public boolean exists() {
+		if (!file.exists()) {
+			return false;
+		}
+
+		File idleFolderFile = new File(file, IDLEFOLDER);
+		File idleFile = new File(file, IDLEFILE);
+
+		if (idleFolderFile.exists()) {
+			IDLEFolderBean fileBean = SerializationUtils.deserialize(idleFolderFile, IDLEFolderBean.class);
+			return fileBean != null;
+		} else if (idleFile.exists()) {
+			IDLEFileBean fileBean = SerializationUtils.deserialize(idleFolderFile, IDLEFileBean.class);
+			return fileBean != null;
+		} else
+			return false;
 	}
 }
