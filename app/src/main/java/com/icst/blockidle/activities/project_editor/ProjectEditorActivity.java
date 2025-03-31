@@ -53,12 +53,12 @@ public class ProjectEditorActivity extends AppCompatActivity {
 			projectFile = ProjectFile.class.cast(getIntent().getParcelableExtra("projectFile"));
 		}
 
-        // Create project structure folders and store their reference for creating files in them.
-        // TODO: Move this folder creation task during project creation and only store reference here.
+		// Create project structure folders and store their reference for creating files in them.
+		// TODO: Move this folder creation task during project creation and only store reference here.
 		rootFolder = IDLEFolder.getProjectIDLEFolder(projectFile);
-		sourceDir = createIDLESourceDir();
-		javaDir = createIDLEJavaDir();
-		resDir = createIDLEResDir();
+		sourceDir = createOrExistsIDLESourceDir();
+		javaDir = createOrExistsIDLEJavaDir();
+		resDir = createOrExistsIDLEResDir();
 
 		binding = ActivityProjectEditorBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
@@ -90,7 +90,7 @@ public class ProjectEditorActivity extends AppCompatActivity {
 		binding = null;
 	}
 
-	private IDLEFolder createIDLESourceDir() {
+	private IDLEFolder createOrExistsIDLESourceDir() {
 		try {
 			return rootFolder.createFolder("src");
 		} catch (IDLEFileAlreadyExistsException err) {
@@ -98,7 +98,7 @@ public class ProjectEditorActivity extends AppCompatActivity {
 		}
 	}
 
-	private IDLEFolder createIDLEJavaDir() {
+	private IDLEFolder createOrExistsIDLEJavaDir() {
 		try {
 			return sourceDir.createFolder("java");
 		} catch (IDLEFileAlreadyExistsException err) {
@@ -106,7 +106,7 @@ public class ProjectEditorActivity extends AppCompatActivity {
 		}
 	}
 
-	private IDLEFolder createIDLEResDir() {
+	private IDLEFolder createOrExistsIDLEResDir() {
 		try {
 			return sourceDir.createFolder("res");
 		} catch (IDLEFileAlreadyExistsException err) {
