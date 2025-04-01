@@ -2,7 +2,9 @@
 <resources>
     <string name="app_name">Block IDLE</string>
     <string name="cancel">Cancel</string>
+	<string name="create">Create</string>
     <string name="create_a_new_project">Create a new project</string>
+	<string name="new_java_class">New Java Class</string>
     <string name="package_name">Package Name</string>
     <string name="package_name_example">Example \: com.example.pkg</string>
     <string name="project_configuration">Project Configuration</string>

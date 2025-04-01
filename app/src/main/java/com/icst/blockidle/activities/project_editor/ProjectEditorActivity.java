@@ -17,6 +17,8 @@
 
 package com.icst.blockidle.activities.project_editor;
 
+import com.icst.blockidle.R;
+import com.icst.blockidle.activities.project_editor.dialog.NewJavaClassDialog;
 import com.icst.blockidle.activities.project_editor.viewholder.FileTreeViewHolder;
 import com.icst.blockidle.databinding.ActivityProjectEditorBinding;
 import com.icst.blockidle.exception.IDLEFileAlreadyExistsException;
@@ -28,6 +30,8 @@ import com.unnamed.b.atv.view.TreeNodeWrapperView;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -87,6 +91,20 @@ public class ProjectEditorActivity extends AppCompatActivity {
 	protected void onDestroy() {
 		super.onDestroy();
 		binding = null;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.project_editor_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem menuItem) {
+		if (R.id.add_java_class == menuItem.getItemId()) {
+			new NewJavaClassDialog(this, javaDir, projectFile);
+		}
+		return true;
 	}
 
 	private IDLEFolder createOrExistsIDLESourceDir() {
