@@ -25,11 +25,14 @@ import com.icst.blockidle.util.ProjectFile;
 
 import android.view.LayoutInflater;
 
+import androidx.appcompat.app.AlertDialog;
+
 public class NewJavaClassDialog extends MaterialAlertDialogBuilder {
 
 	private ProjectEditorActivity projectEditorActivity;
 	private IDLEFolder javaDir;
 	private ProjectFile projectFile;
+	private AlertDialog alertDialog;
 
 	public NewJavaClassDialog(
 			ProjectEditorActivity projectEditorActivity,
@@ -44,7 +47,16 @@ public class NewJavaClassDialog extends MaterialAlertDialogBuilder {
 				.inflate(LayoutInflater.from(projectEditorActivity));
 		binding.packageName.setText(projectFile.getProjectBean().getProjectPackageName());
 		setView(binding.getRoot());
-		create().show();
+		alertDialog = create();
+		alertDialog.show();
+		binding.create.setOnClickListener(v -> {
+			alertDialog.dismiss();
+			// TODO: Create Java Class If valid input
+		});
+
+		binding.cancel.setOnClickListener(v -> {
+			alertDialog.dismiss();
+		});
 	}
 
 }
