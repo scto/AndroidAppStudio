@@ -22,6 +22,7 @@ import com.icst.blockidle.activities.project_editor.ProjectEditorActivity;
 import com.icst.blockidle.databinding.DialogCreateJavaFileBinding;
 import com.icst.blockidle.util.IDLEFolder;
 import com.icst.blockidle.util.ProjectFile;
+import com.icst.blockidle.viewmodel.NewJavaClassDialogViewModel;
 
 import android.view.LayoutInflater;
 
@@ -29,10 +30,11 @@ import androidx.appcompat.app.AlertDialog;
 
 public class NewJavaClassDialog extends MaterialAlertDialogBuilder {
 
+	private DialogCreateJavaFileBinding binding;
+	private NewJavaClassDialogViewModel viewModel;
 	private ProjectEditorActivity projectEditorActivity;
 	private IDLEFolder javaDir;
 	private ProjectFile projectFile;
-	private AlertDialog alertDialog;
 
 	public NewJavaClassDialog(
 			ProjectEditorActivity projectEditorActivity,
@@ -43,20 +45,18 @@ public class NewJavaClassDialog extends MaterialAlertDialogBuilder {
 		this.javaDir = javaDir;
 		this.projectFile = projectFile;
 
-		DialogCreateJavaFileBinding binding = DialogCreateJavaFileBinding
-				.inflate(LayoutInflater.from(projectEditorActivity));
-		binding.packageName.setText(projectFile.getProjectBean().getProjectPackageName());
-		setView(binding.getRoot());
-		alertDialog = create();
-		alertDialog.show();
-		binding.create.setOnClickListener(v -> {
-			alertDialog.dismiss();
-			// TODO: Create Java Class If valid input
-		});
+		viewModel = new NewJavaClassDialogViewModel();
+		viewModel.setProjectFile(projectFile);
+		viewModel.setProjectEditorActivity(projectEditorActivity);
 
-		binding.cancel.setOnClickListener(v -> {
-			alertDialog.dismiss();
-		});
+		binding = DialogCreateJavaFileBinding.inflate(LayoutInflater.from(projectEditorActivity));
+		binding.setViewModel(viewModel);
+
+		setView(binding.getRoot());
+
+		AlertDialog alertDialog = create();
+		alertDialog.show();
+		viewModel.setAlertDialog(alertDialog);
 	}
 
 }
