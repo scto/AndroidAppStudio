@@ -21,6 +21,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.icst.blockidle.activities.project_editor.ProjectEditorActivity;
 import com.icst.blockidle.databinding.DialogCreateJavaFileBinding;
 import com.icst.blockidle.util.IDLEFolder;
+import com.icst.blockidle.util.ProjectBeanValidator;
 import com.icst.blockidle.util.ProjectFile;
 import com.icst.blockidle.viewmodel.NewJavaClassDialogViewModel;
 
@@ -50,13 +51,23 @@ public class NewJavaClassDialog extends MaterialAlertDialogBuilder {
 		viewModel.setProjectEditorActivity(projectEditorActivity);
 
 		binding = DialogCreateJavaFileBinding.inflate(LayoutInflater.from(projectEditorActivity));
-		binding.setViewModel(viewModel);
 
 		setView(binding.getRoot());
 
 		AlertDialog alertDialog = create();
 		alertDialog.show();
 		viewModel.setAlertDialog(alertDialog);
+
+		viewModel.getPackageName().observe(projectEditorActivity, packageName -> {
+			boolean isValidPackageName = ProjectBeanValidator.isValidPackageName(packageName);
+
+			binding.packageNameTextInputLayout.setErrorEnabled(!isValidPackageName);
+			if (!isValidPackageName) {
+				binding.packageNameTextInputLayout.setError("Invalid package name");
+			}
+		});
+		binding.packageNameTextInputLayout.setErrorEnabled(false);
+		binding.setViewModel(viewModel);
 	}
 
 }

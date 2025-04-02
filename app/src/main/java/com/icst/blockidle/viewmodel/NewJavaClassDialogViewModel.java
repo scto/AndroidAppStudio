@@ -23,6 +23,7 @@ import com.icst.blockidle.util.ProjectFile;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class NewJavaClassDialogViewModel extends ViewModel {
@@ -30,6 +31,7 @@ public class NewJavaClassDialogViewModel extends ViewModel {
 	private ProjectFile projectFile;
 	private AlertDialog alertDialog;
 	private ProjectEditorActivity projectEditorActivity;
+	private final MutableLiveData<String> packageName = new MutableLiveData<>("");
 
 	public void createJavaFile() {
 		alertDialog.dismiss();
@@ -41,12 +43,9 @@ public class NewJavaClassDialogViewModel extends ViewModel {
 		alertDialog.dismiss();
 	}
 
-	public String getPackageName() {
-		return projectFile.getProjectBean().getProjectPackageName();
-	}
-
 	public void setProjectFile(ProjectFile projectFile) {
 		this.projectFile = projectFile;
+		packageName.postValue(projectFile.getProjectBean().getProjectPackageName());
 	}
 
 	public void setAlertDialog(AlertDialog alertDialog) {
@@ -55,5 +54,9 @@ public class NewJavaClassDialogViewModel extends ViewModel {
 
 	public void setProjectEditorActivity(ProjectEditorActivity projectEditorActivity) {
 		this.projectEditorActivity = projectEditorActivity;
+	}
+
+	public MutableLiveData<String> getPackageName() {
+		return this.packageName;
 	}
 }
