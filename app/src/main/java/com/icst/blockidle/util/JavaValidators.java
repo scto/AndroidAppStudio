@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 
 public class JavaValidators {
 
+	// TODO: To be completed for java class name validation.
 	public static final String JAVA_CLASS_NAME_REGEX = "^(.)*$";
 
 	public static final boolean isValidJavaClassName(String className) {
