@@ -66,7 +66,6 @@ public class NewJavaClassDialog extends MaterialAlertDialogBuilder {
 				binding.packageNameTextInputLayout.setError("Invalid package name");
 			}
 		});
-		binding.packageNameTextInputLayout.setErrorEnabled(false);
 		binding.setViewModel(viewModel);
 	}
 
