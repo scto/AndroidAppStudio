@@ -29,12 +29,4 @@ public class IDLEJavaFileBean extends IDLEFileBean implements Serializable {
     public IDLEJavaFileBean(String name) {
         super(name);
     }
-
-    public String getClassType() {
-        return this.classType;
-    }
-
-    public void setClassType(String classType) {
-        this.classType = classType;
-    }
 }
