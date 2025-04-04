@@ -21,6 +21,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.icst.blockidle.activities.project_editor.ProjectEditorActivity;
 import com.icst.blockidle.databinding.DialogCreateJavaFileBinding;
 import com.icst.blockidle.util.IDLEFolder;
+import com.icst.blockidle.util.JavaValidators;
 import com.icst.blockidle.util.ProjectBeanValidator;
 import com.icst.blockidle.util.ProjectFile;
 import com.icst.blockidle.viewmodel.NewJavaClassDialogViewModel;
@@ -47,10 +48,11 @@ public class NewJavaClassDialog extends MaterialAlertDialogBuilder {
 		this.projectFile = projectFile;
 
 		viewModel = new NewJavaClassDialogViewModel();
-		viewModel.setProjectFile(projectFile);
 		viewModel.setProjectEditorActivity(projectEditorActivity);
-
+		viewModel.setProjectFile(projectFile);
 		binding = DialogCreateJavaFileBinding.inflate(LayoutInflater.from(projectEditorActivity));
+		binding.setViewModel(viewModel);
+		binding.setLifecycleOwner(projectEditorActivity);
 
 		setView(binding.getRoot());
 
@@ -66,7 +68,18 @@ public class NewJavaClassDialog extends MaterialAlertDialogBuilder {
 				binding.packageNameTextInputLayout.setError("Invalid package name");
 			}
 		});
-		binding.setViewModel(viewModel);
+
+		viewModel.getJavaClassName().observe(projectEditorActivity, className -> {
+			boolean isValidClassName = JavaValidators.isValidJavaClassName(className);
+
+			binding.classNameTextInputLayout.setErrorEnabled(!isValidClassName);
+			if (!isValidClassName) {
+				binding.classNameTextInputLayout.setError("Invalid class name");
+			}
+		});
+
+		// Do not show error initially
+		binding.classNameTextInputLayout.setErrorEnabled(false);
 	}
 
 }

@@ -18,6 +18,8 @@
 package com.icst.blockidle.viewmodel;
 
 import com.icst.blockidle.activities.project_editor.ProjectEditorActivity;
+import com.icst.blockidle.util.JavaValidators;
+import com.icst.blockidle.util.ProjectBeanValidator;
 import com.icst.blockidle.util.ProjectFile;
 
 import android.widget.Toast;
@@ -32,11 +34,23 @@ public class NewJavaClassDialogViewModel extends ViewModel {
 	private AlertDialog alertDialog;
 	private ProjectEditorActivity projectEditorActivity;
 	private final MutableLiveData<String> packageName = new MutableLiveData<>("");
+	private final MutableLiveData<String> javaClassName = new MutableLiveData<>("");
 
 	public void createJavaFile() {
-		alertDialog.dismiss();
-		// TODO: Create Java Class If valid input
-		Toast.makeText(projectEditorActivity, "Not implemented yet", Toast.LENGTH_SHORT).show();
+		boolean isValidClassName = JavaValidators.isValidJavaClassName(javaClassName.getValue());
+		boolean isValidPackageName = ProjectBeanValidator.isValidPackageName(packageName.getValue());
+
+		if (isValidClassName && isValidPackageName) {
+			alertDialog.dismiss();
+			// TODO: Create Java Class
+			Toast.makeText(projectEditorActivity, "Not implemented yet", Toast.LENGTH_SHORT).show();
+		} else {
+			if (!isValidClassName) {
+				javaClassName.postValue(javaClassName.getValue());
+			} else if (!isValidPackageName) {
+				packageName.postValue(packageName.getValue());
+			}
+		}
 	}
 
 	public void dismissDialog() {
@@ -58,5 +72,9 @@ public class NewJavaClassDialogViewModel extends ViewModel {
 
 	public MutableLiveData<String> getPackageName() {
 		return this.packageName;
+	}
+
+	public MutableLiveData<String> getJavaClassName() {
+		return this.javaClassName;
 	}
 }
