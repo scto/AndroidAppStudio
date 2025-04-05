@@ -58,6 +58,7 @@ public class IDLEFolder extends IDLEFile {
 	 * Constructs an {@code IDLEFolder} from a physical directory.
 	 * Attempts to deserialize metadata from the folder. If deserialization fails,
 	 * a new {@code IDLEFolderBean} is created with the folder's name.
+	 * Note that it will not create any physical directory until makeDir() is called.
 	 *
 	 * @param file The folder on disk to represent as an IDLEFolder
 	 */
