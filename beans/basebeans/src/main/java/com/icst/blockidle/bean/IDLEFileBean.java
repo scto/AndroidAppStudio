@@ -27,4 +27,8 @@ public class IDLEFileBean implements Serializable {
 	public IDLEFileBean(String name) {
 		this.name = name;
 	}
+
+	public String getFileType() {
+		return "";
+	}
 }

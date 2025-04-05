@@ -95,6 +95,11 @@ public class IDLEFolder extends IDLEFile {
 					continue;
 				}
 
+				if (idleFileBean.getFileType().equals(IDLEJavaFileBean.FILE_TYPE)) {
+					filesList.add(new IDLEJavaFile(file));
+					continue;
+				}
+
 				filesList.add(new IDLEFile(file));
 			}
 		}
@@ -184,5 +189,4 @@ public class IDLEFolder extends IDLEFile {
 				});
 		return new IDLEFolder(folderRoot);
 	}
-
 }

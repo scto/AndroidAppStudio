@@ -23,6 +23,7 @@ import com.icst.blockidle.R;
 import com.icst.blockidle.databinding.ViewHolderFileTreeBinding;
 import com.icst.blockidle.util.IDLEFile;
 import com.icst.blockidle.util.IDLEFolder;
+import com.icst.blockidle.util.IDLEJavaFile;
 import com.unnamed.b.atv.model.TreeNode;
 
 import android.view.View;
@@ -56,8 +57,8 @@ public class FileTreeViewHolder extends TreeNode.BaseNodeViewHolder<IDLEFile> {
 		if (value instanceof IDLEFolder) {
 			binding.icon.setImageResource(R.drawable.folder_outline);
 			updateExpandCollapseIcon(node.isExpanded());
-		} else {
-			// Todo: File icons
+		} else if (value instanceof IDLEJavaFile) {
+			binding.icon.setImageResource(R.drawable.ic_java);
 		}
 
 		binding.getRoot().setOnClickListener(new TreeItemClickListener(value, node));

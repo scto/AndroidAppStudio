@@ -23,10 +23,17 @@ import java.io.Serializable;
 public class IDLEJavaFileBean extends IDLEFileBean implements Serializable {
 	public static final long serialVersionUID = 1;
 
+	public static final String FILE_TYPE = "folder";
+
 	public static final String JAVA_CLASS = "JavaClass";
 	public static final String JAVA_INTERFACE = "JavaInterface";
 
 	public IDLEJavaFileBean(String name) {
 		super(name);
+	}
+
+	@Override
+	public String getFileType() {
+		return FILE_TYPE;
 	}
 }

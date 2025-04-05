@@ -15,22 +15,13 @@
  *   along with Block IDLE.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.icst.blockidle.bean;
+package com.icst.blockidle.util;
 
-import java.io.Serializable;
+import java.io.File;
 
-public class IDLEFolderBean extends IDLEFileBean implements Serializable {
-	public static final long serialVersionUID = 1;
+public class IDLEJavaFile extends IDLEFile {
 
-	public static final String FILE_TYPE = "folder";
-
-	public IDLEFolderBean(String name) {
-		super(name);
+	public IDLEJavaFile(File file) {
+		super(file);
 	}
-
-	@Override
-	public String getFileType() {
-		return FILE_TYPE;
-	}
-
 }
