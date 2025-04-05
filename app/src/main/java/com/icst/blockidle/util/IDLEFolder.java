@@ -27,6 +27,24 @@ import com.icst.blockidle.bean.IDLEJavaFileBean;
 import com.icst.blockidle.exception.IDLEFileAlreadyExistsException;
 import com.icst.blockidle.listener.SerializationListener;
 
+/**
+ * Represents a folder in the Block IDLE file system.
+ * 
+ * <p>This class is responsible for managing folder-related operations,
+ * such as creating subfolders, listing contained files, and handling
+ * serialization/deserialization of folder metadata.
+ *
+ * <p>Each {@code IDLEFolder} can contain {@code IDLEFile} and {@code IDLEFolder}
+ * instances, which are stored within a "data" directory under the folder.
+ *
+ * <p>The folder metadata is serialized to a special file named "IDLEFolder",
+ * and it also supports detection of Java files using the {@code IDLEJavaFileBean}
+ * marker in a file named "IDLEFile".
+ *
+ * <p>This class extends {@code IDLEFile}, inheriting basic file utilities and
+ * providing more specific logic for folder manipulation in the context of
+ * the Block IDLE environment.
+ */
 public class IDLEFolder extends IDLEFile {
 
 	// Contanst for contents of folder
@@ -36,6 +54,13 @@ public class IDLEFolder extends IDLEFile {
 
 	private IDLEFileBean fileBean;
 
+	/**
+	 * Constructs an {@code IDLEFolder} from a physical directory.
+	 * Attempts to deserialize metadata from the folder. If deserialization fails,
+	 * a new {@code IDLEFolderBean} is created with the folder's name.
+	 *
+	 * @param file The folder on disk to represent as an IDLEFolder
+	 */
 	public IDLEFolder(File file) {
 		super(file);
 		fileBean = SerializationUtils.deserialize(new File(file, IDLEFILE), IDLEFolderBean.class);
@@ -44,11 +69,24 @@ public class IDLEFolder extends IDLEFile {
 		}
 	}
 
+	/**
+	 * Constructs an {@code IDLEFolder} with a specific file and associated metadata.
+	 *
+	 * @param file The folder location on disk
+	 * @param fileBean The metadata bean describing this folder
+	 */
 	public IDLEFolder(File file, IDLEFolderBean fileBean) {
 		super(file);
 		this.fileBean = fileBean;
 	}
 
+	/**
+	 * Constructs an {@code IDLEFolder} representing a subfolder of another IDLEFolder.
+	 * Attempts to load metadata; falls back to a new bean if deserialization fails.
+	 *
+	 * @param folder The parent IDLEFolder
+	 * @param subFolder The name of the subfolder
+	 */
 	public IDLEFolder(IDLEFolder folder, String subFolder) {
 		super(new File(new File(folder.file, CONTENTS), subFolder));
 		fileBean = SerializationUtils.deserialize(new File(file, IDLEFILE), IDLEFolderBean.class);
@@ -57,10 +95,22 @@ public class IDLEFolder extends IDLEFile {
 		}
 	}
 
+	/**
+	 * Returns the root IDLEFolder of a given project.
+	 *
+	 * @param projectFile The project file reference
+	 * @return An {@code IDLEFolder} corresponding to the project root
+	 */
 	public static IDLEFolder getProjectIDLEFolder(ProjectFile projectFile) {
 		return new IDLEFolder(projectFile.getFile());
 	}
 
+	/**
+	 * Retrieves a list of IDLEFile instances (files or folders) contained in this folder.
+	 * Only directories with valid metadata files are included.
+	 *
+	 * @return A list of {@code IDLEFile} objects representing child elements for IDLEFolder
+	 */
 	public List<IDLEFile> getFiles() {
 		File contents = new File(file, CONTENTS);
 		if (!contents.exists()) {
@@ -108,6 +158,10 @@ public class IDLEFolder extends IDLEFile {
 		return filesList;
 	}
 
+	/**
+	 * Creates the physical directory structure on disk for this IDLEFolder,
+	 * including the {@code CONTENTS} subdirectory and the serialized metadata file.
+	 */
 	public void makeDir() {
 		File idleFolderFile = new File(file, IDLEFOLDER);
 		File contents = new File(file, CONTENTS);
@@ -127,7 +181,15 @@ public class IDLEFolder extends IDLEFile {
 				});
 	}
 
-	public IDLEFile createJavaFile(String className) throws IDLEFileAlreadyExistsException {
+	/**
+	 * Creates a new Java source file under this folder with the given class name.
+	 * Folders and metadata are created accordingly.
+	 *
+	 * @param className The name of the Java class (also used as folder name)
+	 * @return An {@code IDLEJavaFile} representing the new Java file
+	 * @throws IDLEFileAlreadyExistsException if a file or folder with the same name already exists
+	 */
+	public IDLEJavaFile createJavaFile(String className) throws IDLEFileAlreadyExistsException {
 		File contents = new File(file, CONTENTS);
 		File folderRoot = new File(contents, className);
 
@@ -156,9 +218,16 @@ public class IDLEFolder extends IDLEFile {
 					public void onSerializationFailed(Exception exception) {
 					}
 				});
-		return new IDLEFile(folderRoot);
+		return new IDLEJavaFile(folderRoot);
 	}
 
+	/**
+	 * Creates a new subfolder under this IDLEFolder and serializes its metadata.
+	 *
+	 * @param name The name of the subfolder to create
+	 * @return A new {@code IDLEFolder} representing the created folder
+	 * @throws IDLEFileAlreadyExistsException if a file or folder with the same name already exists
+	 */
 	public IDLEFolder createFolder(String name) throws IDLEFileAlreadyExistsException {
 		File contents = new File(file, CONTENTS);
 		File folderRoot = new File(contents, name);
