@@ -95,6 +95,7 @@ public class IDLEFolder extends IDLEFile {
 					continue;
 				}
 
+				// Warning: DO NOT USE `instanceof` because is type-casted using generics so `instanceof` will not work on it.
 				if (idleFileBean.getFileType().equals(IDLEJavaFileBean.FILE_TYPE)) {
 					filesList.add(new IDLEJavaFile(file));
 					continue;
