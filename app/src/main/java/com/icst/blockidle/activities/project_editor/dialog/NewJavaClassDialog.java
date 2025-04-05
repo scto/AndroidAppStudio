@@ -50,6 +50,7 @@ public class NewJavaClassDialog extends MaterialAlertDialogBuilder {
 		viewModel = new NewJavaClassDialogViewModel();
 		viewModel.setProjectEditorActivity(projectEditorActivity);
 		viewModel.setProjectFile(projectFile);
+		viewModel.setJavaDir(javaDir);
 		binding = DialogCreateJavaFileBinding.inflate(LayoutInflater.from(projectEditorActivity));
 		binding.setViewModel(viewModel);
 		binding.setLifecycleOwner(projectEditorActivity);

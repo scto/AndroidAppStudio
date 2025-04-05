@@ -23,6 +23,7 @@ import java.util.List;
 
 import com.icst.blockidle.bean.IDLEFileBean;
 import com.icst.blockidle.bean.IDLEFolderBean;
+import com.icst.blockidle.bean.IDLEJavaFileBean;
 import com.icst.blockidle.exception.IDLEFileAlreadyExistsException;
 import com.icst.blockidle.listener.SerializationListener;
 
@@ -101,6 +102,57 @@ public class IDLEFolder extends IDLEFile {
 		return filesList;
 	}
 
+	public void makeDir() {
+		File idleFolderFile = new File(file, IDLEFOLDER);
+		File contents = new File(file, CONTENTS);
+		contents.mkdirs();
+		SerializationUtils.serialize(
+				fileBean,
+				idleFolderFile,
+				new SerializationListener() {
+
+					@Override
+					public void onSerializationSucess() {
+					}
+
+					@Override
+					public void onSerializationFailed(Exception exception) {
+					}
+				});
+	}
+
+	public IDLEFile createJavaFile(String className) throws IDLEFileAlreadyExistsException {
+		File contents = new File(file, CONTENTS);
+		File folderRoot = new File(contents, className);
+
+		if (!folderRoot.exists()) {
+			folderRoot.mkdirs();
+		}
+
+		File idleFileBeanFile = new File(folderRoot, IDLEFILE);
+
+		if (idleFileBeanFile.exists() || new File(folderRoot, IDLEFOLDER).exists()) {
+			throw new IDLEFileAlreadyExistsException();
+		}
+
+		IDLEFileBean fileBean = new IDLEJavaFileBean(className);
+
+		SerializationUtils.serialize(
+				fileBean,
+				idleFileBeanFile,
+				new SerializationListener() {
+
+					@Override
+					public void onSerializationSucess() {
+					}
+
+					@Override
+					public void onSerializationFailed(Exception exception) {
+					}
+				});
+		return new IDLEFile(folderRoot);
+	}
+
 	public IDLEFolder createFolder(String name) throws IDLEFileAlreadyExistsException {
 		File contents = new File(file, CONTENTS);
 		File folderRoot = new File(contents, name);
@@ -132,4 +184,5 @@ public class IDLEFolder extends IDLEFile {
 				});
 		return new IDLEFolder(folderRoot);
 	}
+
 }

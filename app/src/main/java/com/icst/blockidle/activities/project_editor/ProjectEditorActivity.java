@@ -126,7 +126,7 @@ public class ProjectEditorActivity extends AppCompatActivity {
 				// Already handled...
 			}
 		}
-		return new IDLEFolder(rootFolder, "java");
+		return new IDLEFolder(sourceDir, "java");
 	}
 
 	private IDLEFolder createOrExistsIDLEResDir() {

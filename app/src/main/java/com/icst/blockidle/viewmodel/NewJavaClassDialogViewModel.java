@@ -18,6 +18,8 @@
 package com.icst.blockidle.viewmodel;
 
 import com.icst.blockidle.activities.project_editor.ProjectEditorActivity;
+import com.icst.blockidle.exception.IDLEFileAlreadyExistsException;
+import com.icst.blockidle.util.IDLEFolder;
 import com.icst.blockidle.util.JavaValidators;
 import com.icst.blockidle.util.ProjectBeanValidator;
 import com.icst.blockidle.util.ProjectFile;
@@ -32,6 +34,7 @@ public class NewJavaClassDialogViewModel extends ViewModel {
 
 	private ProjectFile projectFile;
 	private AlertDialog alertDialog;
+	private IDLEFolder javaDir;
 	private ProjectEditorActivity projectEditorActivity;
 	private final MutableLiveData<String> packageName = new MutableLiveData<>("");
 	private final MutableLiveData<String> javaClassName = new MutableLiveData<>("");
@@ -42,14 +45,29 @@ public class NewJavaClassDialogViewModel extends ViewModel {
 
 		if (isValidClassName && isValidPackageName) {
 			alertDialog.dismiss();
-			// TODO: Create Java Class
-			Toast.makeText(projectEditorActivity, "Not implemented yet", Toast.LENGTH_SHORT).show();
+			createJavaFileInPackage();
 		} else {
 			if (!isValidClassName) {
 				javaClassName.postValue(javaClassName.getValue());
 			} else if (!isValidPackageName) {
 				packageName.postValue(packageName.getValue());
 			}
+		}
+	}
+
+	public void createJavaFileInPackage() {
+		String[] splittedPackage = packageName.getValue().split("\\.");
+		IDLEFolder destinationFolder = javaDir;
+		for (int i = 0; i < splittedPackage.length; ++i) {
+			destinationFolder = new IDLEFolder(destinationFolder, splittedPackage[i]);
+			if (!destinationFolder.exists()) {
+				destinationFolder.makeDir();
+			}
+		}
+		try {
+			destinationFolder.createJavaFile(javaClassName.getValue());
+		} catch (IDLEFileAlreadyExistsException e) {
+			Toast.makeText(projectEditorActivity, "IDLEFileAlreadyExistsException occurred", Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -76,5 +94,13 @@ public class NewJavaClassDialogViewModel extends ViewModel {
 
 	public MutableLiveData<String> getJavaClassName() {
 		return this.javaClassName;
+	}
+
+	public IDLEFolder getJavaDir() {
+		return this.javaDir;
+	}
+
+	public void setJavaDir(IDLEFolder javaDir) {
+		this.javaDir = javaDir;
 	}
 }

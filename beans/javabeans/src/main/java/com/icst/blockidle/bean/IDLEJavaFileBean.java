@@ -21,12 +21,12 @@ import java.io.Serializable;
 
 // TODO: Inheritance
 public class IDLEJavaFileBean extends IDLEFileBean implements Serializable {
-    public static final long serialVersionUID = 1;
+	public static final long serialVersionUID = 1;
 
-    public static final String JAVA_CLASS = "JavaClass";
+	public static final String JAVA_CLASS = "JavaClass";
 	public static final String JAVA_INTERFACE = "JavaInterface";
 
-    public IDLEJavaFileBean(String name) {
-        super(name);
-    }
+	public IDLEJavaFileBean(String name) {
+		super(name);
+	}
 }
