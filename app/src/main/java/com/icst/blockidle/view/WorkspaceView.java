@@ -34,6 +34,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class WorkspaceView extends LinearLayout {
 
 	private final ArrayList<PaneView> panes;
+	private PaneView currentPane;
+
+	private LinearLayout paneHolderView;
 	private RecyclerView panesList;
 	private PaneListAdapter adapter;
 
@@ -41,18 +44,37 @@ public class WorkspaceView extends LinearLayout {
 		super(context, attrs);
 		panes = new ArrayList<PaneView>();
 		panesList = new RecyclerView(context);
+		paneHolderView = new LinearLayout(context);
+		paneHolderView.setOrientation(VERTICAL);
+
 		adapter = new PaneListAdapter(panes);
 		panesList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
 		panesList.setAdapter(adapter);
-		addView(panesList);
+		paneHolderView.addView(panesList);
 	}
 
 	public void addPane(PaneView pane) {
 		if (pane == null) {
 			return;
 		}
+		currentPane = pane;
 		panes.add(pane);
 		adapter.notifyItemInserted(panes.size() - 1);
+		openPane(pane);
+	}
+
+	public void requestRelease() {
+		if (currentPane == null) {
+			return;
+		}
+		currentPane.onReleaseRequest();
+	}
+
+	public void openPane(PaneView pane) {
+		if (paneHolderView.getChildAt(1) != null) {
+			paneHolderView.removeViewAt(1);
+		}
+		paneHolderView.addView(pane.getView());
 	}
 
 	public class PaneListAdapter extends RecyclerView.Adapter<PaneListAdapter.ViewHolder> {
