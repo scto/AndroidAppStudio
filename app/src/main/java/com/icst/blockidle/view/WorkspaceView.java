@@ -62,6 +62,8 @@ public class WorkspaceView extends LinearLayout {
 
 		noPaneLayout.setLayoutParams(new WorkspaceView.LayoutParams(WorkspaceView.LayoutParams.MATCH_PARENT,
 				WorkspaceView.LayoutParams.MATCH_PARENT));
+		paneHolderView.setLayoutParams(new WorkspaceView.LayoutParams(WorkspaceView.LayoutParams.MATCH_PARENT,
+				WorkspaceView.LayoutParams.MATCH_PARENT));
 
 		addView(noPaneLayout);
 		addView(paneHolderView);
