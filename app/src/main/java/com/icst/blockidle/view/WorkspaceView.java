@@ -50,6 +50,8 @@ public class WorkspaceView extends LinearLayout {
 		super(context, attrs);
 		panes = new ArrayList<PaneView>();
 		panesList = new RecyclerView(context);
+		panesList.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+
 		paneHolderView = new LinearLayout(context);
 		paneHolderView.setOrientation(VERTICAL);
 
@@ -83,6 +85,8 @@ public class WorkspaceView extends LinearLayout {
 		currentPane = pane;
 		panes.add(pane);
 		adapter.notifyItemInserted(panes.size() - 1);
+		pane.getView()
+				.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		openPane(pane);
 	}
 
