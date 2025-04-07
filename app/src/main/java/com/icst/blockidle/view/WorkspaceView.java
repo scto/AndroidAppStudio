@@ -20,6 +20,7 @@ package com.icst.blockidle.view;
 import java.util.ArrayList;
 
 import com.icst.blockidle.databinding.AdapterPaneBinding;
+import com.icst.blockidle.databinding.NoPaneLayoutBinding;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -40,6 +41,11 @@ public class WorkspaceView extends LinearLayout {
 	private RecyclerView panesList;
 	private PaneListAdapter adapter;
 
+	private LinearLayout noPaneLayout;
+
+	private final int PANE_LAYOUT = 0;
+	private final int NO_PANE_LAYOUT = 1;
+
 	public WorkspaceView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		panes = new ArrayList<PaneView>();
@@ -51,6 +57,21 @@ public class WorkspaceView extends LinearLayout {
 		panesList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
 		panesList.setAdapter(adapter);
 		paneHolderView.addView(panesList);
+
+		noPaneLayout = NoPaneLayoutBinding.inflate(LayoutInflater.from(context)).getRoot();
+
+		noPaneLayout.setLayoutParams(new WorkspaceView.LayoutParams(WorkspaceView.LayoutParams.MATCH_PARENT,
+				WorkspaceView.LayoutParams.MATCH_PARENT));
+
+		addView(noPaneLayout);
+		addView(paneHolderView);
+
+		showLayout(NO_PANE_LAYOUT);
+	}
+
+	private void showLayout(int layout) {
+		noPaneLayout.setVisibility(layout == NO_PANE_LAYOUT ? VISIBLE : GONE);
+		paneHolderView.setVisibility(layout == PANE_LAYOUT ? VISIBLE : GONE);
 	}
 
 	public void addPane(PaneView pane) {
